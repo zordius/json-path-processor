@@ -1,7 +1,7 @@
 json-path-processor [![Dependency Status](https://david-dm.org/zordius/json-path-processor.png)](https://david-dm.org/zordius/json-path-processor)
 ==========
 
-A common data processor target to process data without running try catch hell.
+JsonPathProcessor (JPP) - A common data processor target to process data without running try catch hell.
 
 Install
 -------
@@ -14,7 +14,7 @@ Features
 --------
 
 * Chainning
-* Iterate object by JSONPath
+* Iterate objects by JSONPath
 * Catch all throwed error automatically
 
 Usage
@@ -35,6 +35,16 @@ data = jpp(data).each('$.product[*].title', function (V) {
     return modified_description(V);
 }).value();
 ```
+
+API document
+------------
+
+* `jpp(data)` : create the JPP chainning object.
+* `.value(path)` : get the value(s) by json path. This is the only method can not be chainned.
+* `.get(path): get new JPP object by json path. All chainned methods on this is different from root object.
+* `.set(path, value)` : set new value to 1 or more objects by json path.
+* `.each(path, function (J) {...})` : JPP wraped version of `_.each()`
+* `.forIn(path, function (J) {...})` : JPP wraped version of `_.forIn()`
 
 The long version of the story
 -----------------------------
