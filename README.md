@@ -10,18 +10,44 @@ Install
 npm install json-path-processor
 ```
 
+Features
+--------
+
+* Chainning
+* Iterate object by JSONPath
+* Catch all throwed error automatically
+
 Usage
 -----
+
+```javascript
+var jpp = require('json-path-processor');
+
+// I wanna update all product title
+data = jpp(data).each('$.product[*].title', function (V) {
+    return something(V);
+}).value();
+
+// Ya, handle all title and description
+data = jpp(data).each('$.product[*].title', function (V) {
+    return modified_title(V);
+}).each('$.product[*].description', function (V) {
+    return modified_description(V);
+}).value();
+```
+
+The long version of the story
+-----------------------------
 
 All our life is to handle data....with a loop. Let's start from a basic loop:
 
 ```javascript
 for (I in data) {
-    data[I] = something();
+    data[I] = something(data[I]);
 }
 ```
 
-To make jslint happy or ensure to loop scope, we should add property check:
+To make jslint happy or ensure the loop correct, we should add property check:
 
 ```javascript
 for (I in data) {
@@ -31,7 +57,7 @@ for (I in data) {
 }
 ```
 
-In real life, data is not always exist. We must handle none data case:
+In real life, data is not always ready. We must handle none data case:
 
 ```javascript
 if (data && is_object(data)) {
@@ -43,7 +69,7 @@ if (data && is_object(data)) {
 }
 ```
 
-Further, please catch something() because there may some error inside it.
+Furthermore, please catch something() because they may throw some error.
 
 ```javascript
 if (data && is_object(data)) {
@@ -85,7 +111,7 @@ if (data && is_object(data)) {
 }
 ```
 
-The loop becomes a nightmare now? Let's use lodash to reduce indents in the loop:
+The loop becomes a nightmare now, right? Let's use lodash to reduce indents in the loop:
 
 ```javascript
 _(data).each(function(V) {
@@ -107,3 +133,5 @@ _(data).each(function(V) {
 });
 
 ```
+
+But, lodash still can not reduce the try/catch hell for you. Now, JsonPathProcessor help on this!
