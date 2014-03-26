@@ -16,10 +16,7 @@
     "lodash": "~2.4.1",
     "JSONPath": "~0.10.0"
   },
-  "directories": {
-    "lib": "./lib"
-  },
-  "main": "./lib/https-scan.js",
+  "main": "./json-path-processor.js",
   "devDependencies": {
     "jsonlint": "1.6.0",
     "jshint": "2.4.4"
