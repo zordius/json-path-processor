@@ -14,12 +14,21 @@
   },
   "dependencies": {
     "lodash": "~2.4.1",
-    "JSONPath": "~0.10.0"
+    "JSONPath": "~0.10.0",
+    "debug": "~0.7.4"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/**/*.js --reporter spec",
+    "coverage": "node node_modules/istanbul/lib/cli.js cover -- ./node_modules/mocha/bin/_mocha tests/ --recursive --reporter xunit-file",
+    "lint": "jslint index.js"
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
     "jsonlint": "1.6.0",
-    "jshint": "2.4.4"
+    "jshint": "2.4.4",
+    "chai": "*",
+    "istanbul": "*",
+    "mocha": "*"
   },
   "optionalDependencies": {},
   "engines": {
