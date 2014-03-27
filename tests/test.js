@@ -26,4 +26,12 @@ describe('json-path-processor', function () {
         assert.equal(J.value('$.a.b.c'), 'OK!');
         done();
     });
+
+
+    it('should set value by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', 'CHANGE!').value(), {a: {b: {c: 'CHANGE!'}}});
+        done();
+    });
 });

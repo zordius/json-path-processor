@@ -14,7 +14,7 @@ Features
 --------
 
 * Chainning
-* Iterate objects by JSONPath
+* Iterate objects by simplified JSONPath
 * Catch all throwed error automatically
 
 Usage
@@ -24,15 +24,15 @@ Usage
 var jpp = require('json-path-processor');
 
 // I wanna update all product title
-data = jpp(data).each('$.product[*].title', function (V) {
-    return something(V);
+data = jpp(data).each('product', function (V) {
+    V.title = something(...);
 }).value();
 
-// Ya, handle all title and description
-data = jpp(data).each('$.product[*].title', function (V) {
-    return modified_title(V);
-}).each('$.product[*].description', function (V) {
-    return modified_description(V);
+// Ya, handle all product title and promotion description
+data = jpp(data).each('extra.promotion', function (V) {
+    V.description = .....;
+}).each('product', function (V) {
+    V.title = .....;
 }).value();
 ```
 
@@ -40,11 +40,20 @@ API document
 ------------
 
 * `jpp(data)` : create the JPP chainning object.
-* `.value(path)` : get the value(s) by json path. This is the only method can not be chainned.
-* `.get(path): get new JPP object by json path. All chainned methods on this is different from root object.
-* `.set(path, value)` : set new value to 1 or more objects by json path.
+* `.value(path)` : get the value(s) by JSON path. This is the only method can not be chainned.
+* `.get(path): get new JPP object by JSON path. All chainned methods on this is different from root object.
+* `.set(path, value)` : set new value to 1 or more objects by JSON path.
 * `.each(path, function (J) {...})` : JPP wraped version of `_.each()`
 * `.forIn(path, function (J) {...})` : JPP wraped version of `_.forIn()`
+
+Supported JSON Path
+-------------------
+
+We only support absolute JSON Path and only receive one item.
+
+* $ : refer to self
+* $.foo.bar : refer to foo then bar key
+* $.foo.3.bar : refer to foo then 4th array item then bar key
 
 The long version of the story
 -----------------------------
