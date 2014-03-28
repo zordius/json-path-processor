@@ -2,11 +2,7 @@ node_js:
     - 0.6
     - 0.8
     - 0.9
-branches:
-    only:
-        - master
 before_script:
     - npm install
-
 script:
     - npm test
