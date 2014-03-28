@@ -1,4 +1,4 @@
-json-path-processor [![Dependency Status](https://david-dm.org/zordius/json-path-processor.png)](https://david-dm.org/zordius/json-path-processor)
+json-path-processor [![Dependency Status](https://david-dm.org/zordius/json-path-processor.png)](https://david-dm.org/zordius/json-path-processor) [![Build Status](https://travis-ci.org/zordius/json-path-processor.svg?branch=master)](https://travis-ci.org/zordius/json-path-processor)
 ==========
 
 JsonPathProcessor (JPP) - A common data processor target to process data without running try catch hell.
