@@ -1,7 +1,8 @@
 /*jslint node:true */
 'use strict';
 
-var ld = require('lodash'),
+var lodash = require('lodash'),
+    debug = require('debug')('json-path-processor'),
     jsonpath = function (obj, path, assign) {
         var P = path ? path.split(/\./).reverse() : [],
             OO = obj,
@@ -27,7 +28,7 @@ var ld = require('lodash'),
         }
 
         if (assign && key) {
-            O[key] = assign;
+            O[key] = assign.call ? assign(OO) : assign;
         }
 
         return OO;
@@ -46,6 +47,18 @@ JPP.prototype = {
     },
     set: function (path, value) {
         jsonpath(this._data, path, value);
+        return this;
+    },
+    each: function (path, cb) {
+        jsonpath(this._data, path, function (O) {
+            return lodash.each(O, function (OO, index) {
+                try {
+                    O[index] = cb(new JPP(OO), index);
+                } catch(E) {
+                    debug(E);
+                }
+            });
+        });
         return this;
     }
 };
