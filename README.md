@@ -24,25 +24,26 @@ Usage
 var jpp = require('json-path-processor');
 
 // I wanna update all product title
-data = jpp(data).each('product', function (V) {
-    V.title = something(...);
+data = jpp(data).each('product', function (J) {
+    return J.set('title', something()).value();
 }).value();
 
 // Ya, handle all product title and promotion description
-data = jpp(data).each('extra.promotion', function (V) {
-    V.description = .....;
-}).each('product', function (V) {
-    V.title = .....;
+// almost all jpp methods are chainable
+data = jpp(data).each('extra.promotion', function (J) {
+    return J.set('description', somevalue).value();
+}).each('product', function (J) {
+    return J.set('title', somevalue).value();
 }).value();
 ```
 
 API document
 ------------
 
-* `jpp(data)` : create the JPP chainning object.
-* `.value(path)` : get the value(s) by JSON path. This is the only method can not be chainned.
+* `jpp(data)` : create the JPP chainning object by data.
+* `.value(path)` : get the value(s) by JSON path. This is the only method can not be chainned. when path is undefined, get whole data.
 * `.get(path): get new JPP object by JSON path. All chainned methods on this is different from root object.
-* `.set(path, value)` : set new value to 1 or more objects by JSON path.
+* `.set(path, value)` : set new value by JSON path.
 * `.each(path, function (J, key) {...})` : JPP wraped version of `_.each()`, the callback arguments are: JPP object, index|key. The return value of callback will be assigned back the the value.
 * `.forIn(path, function (J, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: JPP object, index|key. The return value of callback will be assigned back the the value.
 
