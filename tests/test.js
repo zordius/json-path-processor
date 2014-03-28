@@ -61,4 +61,22 @@ describe('json-path-processor', function () {
 
         done();
     });
+
+    it('should set values by callback in each()' , function (done) {
+        var J = jpp({a: {b: {c: [1, 2, 3], d: 'OK!'}}});
+
+        assert.deepEqual(J.each('a.b.c', function (J, index) {
+            return J.value() * 2;
+        }).value(), {a: {b: {c: [2, 4, 6], d: 'OK!'}}});
+        done();
+    });
+
+    it('should skip exception silent in each()' , function (done) {
+        var J = jpp({a: {b: {c: ['0', 1, '2', '3'], d: 'OK!'}}});
+
+        assert.deepEqual(J.each('a.b.c', function (J, index) {
+            return J.value().match(/2/) ? J.value() + '!' : '?';
+        }).value(), {a: {b: {c: ["?",1,"2!","?"], d: 'OK!'}}});
+        done();
+    });
 });
