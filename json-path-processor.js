@@ -9,7 +9,8 @@ var lodash = require('lodash'),
             O = obj,
             key;
 
-        while (key = P.pop()) {
+        while (true) {
+            key = P.pop();
             switch (key) {
             case '$':
                 continue;
@@ -37,7 +38,7 @@ var lodash = require('lodash'),
         jsonpath(obj, path, function (O) {
             return lodash[method](O, function (OO, index, obj) {
                 try {
-                    O[index] = cb(new JPP(OO), index);
+                    O[index] = cb(OO, index, obj);
                 } catch(E) {
                     debug(E);
                 }
@@ -47,7 +48,7 @@ var lodash = require('lodash'),
 
 function JPP (data) {
     this._data = data;
-};
+}
 
 JPP.prototype = {
     value: function (path) {

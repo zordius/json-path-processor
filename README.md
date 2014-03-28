@@ -44,8 +44,8 @@ API document
 * `.value(path)` : get the value(s) by JSON path. This is the only method can not be chainned. when path is undefined, get whole data.
 * `.get(path): get new JPP object by JSON path. All chainned methods on this is different from root object.
 * `.set(path, value)` : set new value by JSON path.
-* `.each(path, function (J, key) {...})` : JPP wraped version of `_.each()`, the callback arguments are: JPP object, index|key. The return value of callback will be assigned back the the value.
-* `.forIn(path, function (J, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: JPP object, index|key. The return value of callback will be assigned back the the value.
+* `.each(path, function (value, key) {...})` : JPP wraped version of `_.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+* `.forIn(path, function (value, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 
 Supported JSON Path
 -------------------
