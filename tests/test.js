@@ -79,4 +79,22 @@ describe('json-path-processor', function () {
         }).value(), {a: {b: {c: ["?",1,"2!","?"], d: 'OK!'}}});
         done();
     });
+
+    it('should each array when length property exists in each()' , function (done) {
+        var J = jpp({a: {b: {c: {0: 0, 1: 1, 2: 2, length: 4}, d: 'OK!'}}});
+
+        assert.deepEqual(J.each('a.b.c', function (J, index) {
+            return J.value() + '!';
+        }).value(), {a:{b:{c:{0:'0!',1:'1!',2:'2!',3:'undefined!',length:4},d:'OK!'}}});
+        done();
+    });
+
+    it('should each properties when length property exists in forIn()' , function (done) {
+        var J = jpp({a: {b: {c: {0: 0, 1: 1, 2: 2, length: 4}, d: 'OK!'}}});
+
+        assert.deepEqual(J.forIn('a.b.c', function (J, index) {
+            return J.value() + '!';
+        }).value(), {a:{b:{c:{0:'0!',1:'1!',2:'2!',length:'4!'},d:'OK!'}}});
+        done();
+    });
 });

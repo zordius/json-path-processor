@@ -32,6 +32,17 @@ var lodash = require('lodash'),
         }
 
         return OO;
+    },
+    lodash_wrap = function (obj, method, path, cb) {
+        jsonpath(obj, path, function (O) {
+            return lodash[method](O, function (OO, index, obj) {
+                try {
+                    O[index] = cb(new JPP(OO), index);
+                } catch(E) {
+                    debug(E);
+                }
+            });
+        });
     };
 
 function JPP (data) {
@@ -50,15 +61,11 @@ JPP.prototype = {
         return this;
     },
     each: function (path, cb) {
-        jsonpath(this._data, path, function (O) {
-            return lodash.each(O, function (OO, index) {
-                try {
-                    O[index] = cb(new JPP(OO), index);
-                } catch(E) {
-                    debug(E);
-                }
-            });
-        });
+        lodash_wrap(this._data, 'each', path, cb);
+        return this;
+    },
+    forIn: function (path, cb) {
+        lodash_wrap(this._data, 'forIn', path, cb);
         return this;
     }
 };
