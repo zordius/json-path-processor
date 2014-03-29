@@ -41,13 +41,12 @@ describe('json-path-processor', function () {
         done();
     });
 
-/*    it('should set self by json path', function (done) {
+    it('should set self by json path', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
-        assert.deepEqual(J.set('$', '?!').value(), {a: {b: {c: 'CHANGE!'}}});
+        assert.equal(J.set('$', '?!').value(), '?!');
         done();
     });
-*/
 
     it('should create new children by json path when not exists', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});

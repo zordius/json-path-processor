@@ -63,7 +63,11 @@ JPP.prototype = {
         return new JPP(this.value(path));
     },
     set: function (path, value, create) {
-        jsonpath(this._data, path, value, create);
+        if (path && path !== '$') {
+            jsonpath(this._data, path, value, create);
+        } else {
+            jsonpath(this, '_data', value, create);
+        }
         return this;
     },
     each: function (path, cb) {
