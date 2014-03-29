@@ -3,7 +3,7 @@
 
 var lodash = require('lodash'),
     debug = require('debug')('json-path-processor'),
-    jsonpath = function (obj, path, assign) {
+    jsonpath = function (obj, path, assign, create) {
         var P = path ? path.split(/\./).reverse() : [],
             OO = obj,
             O = obj,
@@ -18,7 +18,12 @@ var lodash = require('lodash'),
             if (OO[key]) {
                 OO = OO[key];
             } else {
-                return null;
+                if (create) {
+                    OO[key] = {};
+                    OO = OO[key];
+                } else {
+                    return null;
+                }
             }
             if (P.length === 1) {
                 O = OO;
@@ -57,8 +62,8 @@ JPP.prototype = {
     get: function (path) {
         return new JPP(this.value(path));
     },
-    set: function (path, value) {
-        jsonpath(this._data, path, value);
+    set: function (path, value, create) {
+        jsonpath(this._data, path, value, create);
         return this;
     },
     each: function (path, cb) {

@@ -41,6 +41,21 @@ describe('json-path-processor', function () {
         done();
     });
 
+/*    it('should set self by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$', '?!').value(), {a: {b: {c: 'CHANGE!'}}});
+        done();
+    });
+*/
+
+    it('should create new children by json path when not exists', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('a.d.e', '?!', true).value(), {a: {b: {c: 'OK!'}, d: {e: '?!'}}});
+        done();
+    });
+
     it('should set value by json path and callback', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
