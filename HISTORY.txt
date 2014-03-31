@@ -1,0 +1,15 @@
+HISTORY
+=======
+
+v0.0.2 current trunk
+   * d94d14f0ba support create object when path not found in .set()
+   * 3966db0d27 support set('$', ...) on self
+   * 3b4c8fac17 update dependency
+
+v0.0.1 https://github.com/zordius/json-path-processor/tree/v0.0.1
+   * initial version
+   * 14d4667518 support .set(path, callback)
+   * 847bd235a4 travis migration
+   * 2397d0f1d3 support each()
+   * e31a548dc2 support forIn()
+   * 3bda7631ca change interfaces of each and forIn for performance

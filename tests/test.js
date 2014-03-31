@@ -48,6 +48,14 @@ describe('json-path-processor', function () {
         done();
     });
 
+
+    it('should set self by empty json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.equal(J.set('', '?!').value(), '?!');
+        done();
+    });
+
     it('should create new children by json path when not exists', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
