@@ -77,7 +77,10 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
 
 * `.forIn(path, function (value, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 ```
-```
+console.log(jpp({a: 'OK', b: 'BAD', length: 9}).forIn('$', function (V, I) {
+    return V + '!';
+}).value());
+``` // will get {a: 'OK!', b: 'BAD!', length: '9!'} , forIn() will not think object with length property as array.
 
 Supported JSON Path
 -------------------
