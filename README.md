@@ -51,7 +51,7 @@ console.log(jpp({a: {b: 'OK'}}).value('a.b')); // will get 'OK'
 console.log(jpp({a: {b: 'OK'}}).value('a.c.d')); // will get undefined
 ```
 
-* `.get(path): get new JPP object by JSON path. All chainned methods on this is different from root object.
+* `.get(path)`: get new JPP object by JSON path. All chainned methods on this is different from root object.
 ```
 console.log(jpp({a: {b: 'OK'}}).get('a').get('b').value()); // will get 'OK'
 ```
@@ -64,7 +64,7 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value()); // a.b.c[2 ~ 9] will become undefined **ARRAY SIZE AUTO EXPEND**
 ```
 
-* `.each(path, function (value, key) {...})` : JPP wraped version of `_.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+* `.each(path, function (value, key) {...})` : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 ```
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
     return V * 2;
@@ -75,12 +75,12 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
 }).value());  // will get {a: b: [0 , 3, 10]}
 ```
 
-* `.forIn(path, function (value, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+* `.forIn(path, function (value, key) {...})` : JPP wraped version of `lodash.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 ```
 console.log(jpp({a: 'OK', b: 'BAD', length: 9}).forIn('$', function (V, I) {
     return V + '!';
-}).value());
-``` // will get {a: 'OK!', b: 'BAD!', length: '9!'} , forIn() will not think object with length property as array.
+}).value()); // will get {a: 'OK!', b: 'BAD!', length: '9!'} , forIn() will not think object with length property as array.
+```
 
 Supported JSON Path
 -------------------
