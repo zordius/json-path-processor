@@ -1,7 +1,9 @@
 HISTORY
 =======
+v0.0.3 current trunk
+   *
 
-v0.0.2 current trunk
+v0.0.2 https://github.com/zordius/json-path-processor/tree/v0.0.2
    * d94d14f0ba support create object when path not found in .set()
    * 3966db0d27 support set('$', ...) on self
    * 3b4c8fac17 update dependency

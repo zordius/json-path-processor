@@ -55,6 +55,7 @@ console.log(jpp({a: {b: 'OK'}}).value('a.c.d')); // will get undefined
 ```
 console.log(jpp({a: {b: 'OK'}}).get('a').get('b').value()); // will get 'OK'
 ```
+
 * `.set(path, value, create)` : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. when `create` is true, create new object by the JSON path.
 ```
 // will get {a: {b: 'OK', c:[1, 3]}}
@@ -66,10 +67,10 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b', 'BAD').value());
 // will get {a: {b: 'OK', c:[1, 4]}}
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?').value());
 
-// set failed **WE CAN NOT CONVERT ARRAY TO OBJECT**
+// set failed ... WE CAN NOT CONVERT ARRAY TO OBJECT
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 
-// a.b.c[2 ~ 9] will become undefined **ARRAY SIZE AUTO EXPEND IN JAVASCRIPT**
+// a.b.c[2 ~ 9] will become undefined ... ARRAY SIZE AUTO EXPEND IN JAVASCRIPT
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value());
 ```
 
