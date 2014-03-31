@@ -100,6 +100,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should know index in callback from 2nd argument in each()', function (done) {
+        var J = jpp({a: {b: {c: [1, 2, 3], d: 'OK!'}}});
+
+        assert.deepEqual(J.each('a.b.c', function (O, index) {
+            return O * index;
+        }).value(), {a: {b: {c: [0, 2, 6], d: 'OK!'}}});
+        done();
+    });
+
     it('should skip exception silent in each()' , function (done) {
         var J = jpp({a: {b: {c: ['0', 1, '2', '3'], d: 'OK!'}}});
 

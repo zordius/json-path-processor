@@ -36,14 +36,45 @@ data = jpp(data).each('extra.promotion', function (O) {
 }).each('product.title', someUtilFunc).value();
 ```
 
-API document
-------------
+API document and example
+------------------------
 
 * `jpp(data)` : create the JPP chainning object by data.
+```
+var J = jpp(['any', 'data', {or: {recursive: {'object'}}}]);
+```
+
 * `.value(path)` : get the value(s) by JSON path. This is the only method can not be chainned. when path is undefined, get whole data.
+```
+console.log(jpp([1, 3, 5]).value()); // will get [1, 3, 5]
+console.log(jpp({a: {b: 'OK'}}).value('a.b')); // will get 'OK'
+console.log(jpp({a: {b: 'OK'}}).value('a.c.d')); // will get undefined
+```
+
 * `.get(path): get new JPP object by JSON path. All chainned methods on this is different from root object.
+```
+console.log(jpp({a: {b: 'OK'}}).get('a').get('b').value()); // will get 'OK'
+```
 * `.set(path, value, create)` : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. when `create` is true, create new object by the JSON path.
+```
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.c.1', 3).value()); // will get {a: {b: 'OK', c:[1, 3]}}
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b', 'BAD').value()); // will get {a: {b: 'BAD', c:[1, 4]}}
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?').value()); // will get {a: {b: 'OK', c:[1, 4]}}
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value()); // set failed **CAN NOT CONVERT ARRAY TO OBJECT**
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value()); // a.b.c[2 ~ 9] will become undefined **ARRAY SIZE AUTO EXPEND**
+```
+
 * `.each(path, function (value, key) {...})` : JPP wraped version of `_.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+```
+console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
+    return V * 2;
+}).value());  // will get {a: b: [2, 6, 10]}
+
+console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) {
+    return V * I;
+}).value());  // will get {a: b: [0 , 3, 10]}
+```
+
 * `.forIn(path, function (value, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 
 Supported JSON Path
