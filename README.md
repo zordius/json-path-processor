@@ -70,17 +70,19 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
     return V * 2;
 }).value());  // will get {a: b: [2, 6, 10]}
 
-console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) {
+console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
     return V * I;
 }).value());  // will get {a: b: [0 , 3, 10]}
 ```
 
 * `.forIn(path, function (value, key) {...})` : JPP wraped version of `_.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+```
+```
 
 Supported JSON Path
 -------------------
 
-We only support absolute JSON Path and only receive one item.
+We only support absolute JSON Path and receive only one item.
 
 * $ : refer to self
 * $.foo.bar : refer to foo then bar key
