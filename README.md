@@ -39,25 +39,29 @@ data = jpp(data).each('extra.promotion', function (O) {
 API document and example
 ------------------------
 
-* `jpp(data)` : create the JPP chainning object by data.
-```
+* **jpp(data)** : create the JPP chainning object by data.
+
+```javascript
 var J = jpp(['any', 'data', {or: {recursive: {'object'}}}]);
 ```
 
-* `.value(path)` : get the value(s) by JSON path. This is the only method can not be chainned. when path is undefined, get whole data.
-```
+* **.value(path)** : get the value(s) by JSON path. This is the only method can not be chainned. when path is undefined, get whole data.
+
+```javascript
 console.log(jpp([1, 3, 5]).value()); // will get [1, 3, 5]
 console.log(jpp({a: {b: 'OK'}}).value('a.b')); // will get 'OK'
 console.log(jpp({a: {b: 'OK'}}).value('a.c.d')); // will get undefined
 ```
 
-* `.get(path)`: get new JPP object by JSON path. All chainned methods on this is different from root object.
-```
+* **.get(path)** : get new JPP object by JSON path. All chainned methods on this is different from root object.
+
+```javascript
 console.log(jpp({a: {b: 'OK'}}).get('a').get('b').value()); // will get 'OK'
 ```
 
-* `.set(path, value, create)` : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. when `create` is true, create new object by the JSON path.
-```
+* **.set(path, value, create)** : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. when `create` is true, create new object by the JSON path.
+
+```javascript
 // will get {a: {b: 'OK', c:[1, 3]}}
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.c.1', 3).value());
 
