@@ -59,7 +59,7 @@ console.log(jpp({a: {b: 'OK'}}).value('a.c.d')); // will get undefined
 console.log(jpp({a: {b: 'OK'}}).get('a').get('b').value()); // will get 'OK'
 ```
 
-* **.set(path, value, create)** : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. when `create` is true, create new object by the JSON path.
+* **.set(path, value, create)** : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. When `create` is exists, create new object by the JSON path, and `create` will be used as default value to be assigned when the callback function throws exception.
 
 ```javascript
 // will get {a: {b: 'OK', c:[1, 3]}}
