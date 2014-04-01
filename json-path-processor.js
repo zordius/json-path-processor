@@ -34,7 +34,13 @@ var lodash = require('lodash'),
         }
 
         if (assign && key) {
-            O[key] = assign.call ? assign(OO) : assign;
+            try {
+                O[key] = assign.call ? assign(OO) : assign;
+            } catch (E) {
+                if (create) {
+                    O[key] = create;
+                }
+            }
         }
 
         return OO;

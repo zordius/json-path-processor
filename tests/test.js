@@ -63,6 +63,13 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should create new children by json path and set default value when exception', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('a.d.e', function () {return [].match(/123/);}, {ok: 'Y!'}).value(), {"a":{"b":{"c":"OK!"},"d":{"e":{"ok":"Y!"}}}});
+        done();
+    });
+
     it('should set value by json path and callback', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
