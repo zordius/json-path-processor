@@ -45,7 +45,7 @@ API document and example
 var J = jpp(['any', 'data', {or: {recursive: {'object'}}}]);
 ```
 
-* **.value(path)** : get the value(s) by JSON path. This is the only method can not be chainned. when path is undefined, get whole data.
+* **.value(path)** : get value by JSON path. This is the only method can not be chainned. when path is undefined or '' or '$', get whole data.
 
 ```javascript
 console.log(jpp([1, 3, 5]).value()); // will get [1, 3, 5]
@@ -78,8 +78,9 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value());
 ```
 
-* `.each(path, function (value, key) {...})` : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
-```
+* **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+
+```javascript
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
     return V * 2;
 }).value());  // will get {a: b: [2, 6, 10]}
@@ -89,8 +90,9 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
 }).value());  // will get {a: b: [0 , 3, 10]}
 ```
 
-* `.forIn(path, function (value, key) {...})` : JPP wraped version of `lodash.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
-```
+* **.forIn(path, function (value, key) {...})** : JPP wraped version of `lodash.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+
+```javascript
 // will get {a: 'OK!', b: 'BAD!', length: '9!'} 
 // forIn() will not think object with length property as array.
 console.log(jpp({a: 'OK', b: 'BAD', length: 9}).forIn('$', function (V, I) {
