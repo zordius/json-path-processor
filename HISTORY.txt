@@ -1,7 +1,7 @@
 HISTORY
 =======
 v0.0.3 current trunk
-   *
+   * ca8236a11b now .set() callback is exception safe. and, can set default value when exception happened
 
 v0.0.2 https://github.com/zordius/json-path-processor/tree/v0.0.2
    * d94d14f0ba support create object when path not found in .set()

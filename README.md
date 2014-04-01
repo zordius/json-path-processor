@@ -87,9 +87,11 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
 
 * `.forIn(path, function (value, key) {...})` : JPP wraped version of `lodash.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 ```
+// will get {a: 'OK!', b: 'BAD!', length: '9!'} 
+// forIn() will not think object with length property as array.
 console.log(jpp({a: 'OK', b: 'BAD', length: 9}).forIn('$', function (V, I) {
     return V + '!';
-}).value()); // will get {a: 'OK!', b: 'BAD!', length: '9!'} , forIn() will not think object with length property as array.
+}).value()); 
 ```
 
 Supported JSON Path
@@ -101,8 +103,8 @@ We only support absolute JSON Path and receive only one item.
 * $.foo.bar : refer to foo then bar key
 * $.foo.3.bar : refer to foo then 4th array item then bar key
 
-The long version of the story
------------------------------
+The long story
+--------------
 
 All our life is to handle data....with a loop. Let's start from a basic loop:
 
