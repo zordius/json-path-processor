@@ -98,6 +98,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should delete the key', function (done) {
+        var J = jpp({a: {b: {c: 'OK!', d: 'Error'}}});
+
+        assert.deepEqual(J.del('a.b.c').value(), {"a":{"b":{"d":"Error"}}});
+        assert.deepEqual(J.del('a.b.d').value(), {"a":{"b":{}}});
+
+        done();
+    });
+
     it('should change key from a to b', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
