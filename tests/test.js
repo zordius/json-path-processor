@@ -98,6 +98,14 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should change key from a to b', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.move('a.b.c', 'a.r.q').value(), {"a":{"b":{},"r":{"q":"OK!"}}});
+
+        done();
+    });
+
     it('should set values by callback in each()' , function (done) {
         var J = jpp({a: {b: {c: [1, 2, 3], d: 'OK!'}}});
 

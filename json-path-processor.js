@@ -3,7 +3,7 @@
 
 var lodash = require('lodash'),
     debug = require('debug')('json-path-processor'),
-    jsonpath = function (obj, path, assign, create) {
+    jsonpath = function (obj, path, assign, create, del) {
         var P = path ? path.split(/\./).reverse() : [],
             OO = obj,
             O = obj,
@@ -22,7 +22,7 @@ var lodash = require('lodash'),
                     OO[key] = {};
                     OO = OO[key];
                 } else {
-                    return null;
+                    return undefined;
                 }
             }
             if (P.length === 1) {
@@ -31,6 +31,11 @@ var lodash = require('lodash'),
             if (P.length === 0) {
                 break;
             }
+        }
+
+        if (del) {
+            delete O[key];
+            return OO;
         }
 
         if (assign && key) {
@@ -68,11 +73,22 @@ JPP.prototype = {
     get: function (path) {
         return new JPP(this.value(path));
     },
-    set: function (path, value, create) {
+    set: function (path, value, create, del) {
         if (path && path !== '$') {
-            jsonpath(this._data, path, value, create);
+            jsonpath(this._data, path, value, create, del);
         } else {
-            jsonpath(this, '_data', value, create);
+            jsonpath(this, '_data', value, create, del);
+        }
+        return this;
+    },
+    del: function (path) {
+        return this.set(path, undefined, false, true);
+    },
+    move: function (from, to) {
+        var V = this.value(from);
+        if (V !== undefined) {
+            this.set(to, V, true);
+            this.del(from);
         }
         return this;
     },
