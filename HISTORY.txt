@@ -3,6 +3,7 @@ HISTORY
 v0.0.5 current trunk
    * a525baf955 support failback callback for .each() and .forIn()
    * 0a247e9912 support .cp()
+   * 56d67ec215 change .cp() to .copy()
 
 v0.0.4 https://github.com/zordius/json-path-processor/tree/v0.0.4
    * 15ae81c32f support .del() and .move()
