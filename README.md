@@ -78,6 +78,13 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value());
 ```
 
+* **.cp(from, to, skip)** : copy value from one JSON path to another. When the JSON path not found, new object will be created. To prevent new object creation, pass skip as true as 3rd param.
+
+```javascript
+// will get {a: {b: 'OK', c:[1, 4], d: 4}}
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).cp('a.c.1', 'a.d').value());
+```
+
 * **.del(path)** : delete a key by JSON path. When the path exists, last key will be deleted; when it do not exist, do nothing.
 
 ```javascript
