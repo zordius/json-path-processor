@@ -95,8 +95,6 @@ console.log(jpp({a: {b: {c: {d: 2, q: 1}}}}).del('a.b.c').value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).move('a.c', 'a.d').value());
 ```
 
-* **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
-
 * **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.
 
 ```javascript
@@ -108,6 +106,7 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
     return V * I;
 }).value());  // will get {a: {b: [0 , 3, 10]}}
 
+// fallback when a.c is not array or not object or not found
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.c', function (V) {
     return V * I;
 }, function (O) {
@@ -124,6 +123,7 @@ console.log(jpp({a: 'OK', b: 'BAD', length: 9}).forIn('$', function (V, I) {
     return V + '!';
 }).value()); 
 
+// fallback when a.c is not array or not object or not found
 console.log(jpp({a: {b: [1, 3, 5]}}).forIn('a.c', function (V) {
     return V * I;
 }, function (O) {
