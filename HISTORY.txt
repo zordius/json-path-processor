@@ -1,6 +1,12 @@
 HISTORY
 =======
-v0.0.3 current trunk
+v0.0.5 current trunk
+   * a525baf955 support failback callback for .each() and .forIn()
+
+v0.0.4 https://github.com/zordius/json-path-processor/tree/v0.0.4
+   * 15ae81c32f support .del() and .move()
+
+v0.0.3 https://github.com/zordius/json-path-processor/tree/v0.0.3
    * ca8236a11b now .set() callback is exception safe. and, can set default value when exception happened
 
 v0.0.2 https://github.com/zordius/json-path-processor/tree/v0.0.2
