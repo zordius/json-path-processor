@@ -59,7 +59,7 @@ console.log(jpp({a: {b: 'OK'}}).value('a.c.d')); // will get undefined
 console.log(jpp({a: {b: 'OK'}}).get('a').get('b').value()); // will get 'OK'
 ```
 
-* **.set(path, value, create)** : set new value by JSON path. When `value` is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. When `create` is exists, create new object by the JSON path, and `create` will be used as default value to be assigned when the callback function throws exception.
+* **.set(path, value, create)** : set new value by JSON path. When value is a function, execute the function with first argument as old value. the return value of the callback function will be assigned. When create exists, create new object by the JSON path, and create will be used as default value to be assigned when the callback function throws exception.
 
 ```javascript
 // will get {a: {b: 'OK', c:[1, 3]}}
@@ -77,6 +77,25 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 // a.b.c[2 ~ 9] will become undefined ... ARRAY SIZE AUTO EXPEND IN JAVASCRIPT
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value());
 ```
+
+* **.del(path)** : delete a key by JSON path. When the path exists, last key will be deleted; when it do not exist, do nothing.
+
+```javascript
+// will get {a: {b: 'OK', c: [1, 4]}}
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).del('a.b.c').value());
+
+// will get {a: {b: {}}
+console.log(jpp({a: {b: {c: {d: 2, q: 1}}}}).del('a.b.c').value());
+```
+
+* **.move(from, to)** : move values from a path to another. when the origin path not found, do nothing.
+
+```javascript
+// will get {a: {b: 'OK', d: [1, 4]}}
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).move('a.c', 'a.d').value());
+```
+
+* **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
 
 * **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.
 

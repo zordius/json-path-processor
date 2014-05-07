@@ -34,6 +34,13 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should get undefined when not found', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.equal(J.value('a.b.d'), undefined);
+        done();
+    });
+
     it('should set value by json path', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
@@ -94,6 +101,23 @@ describe('json-path-processor', function () {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
         assert.deepEqual(J.set('$.a.b.c', function (O, index) {}).value(), {a: {b: {c: undefined}}});
+
+        done();
+    });
+
+    it('should delete the key', function (done) {
+        var J = jpp({a: {b: {c: 'OK!', d: 'Error'}}});
+
+        assert.deepEqual(J.del('a.b.c').value(), {"a":{"b":{"d":"Error"}}});
+        assert.deepEqual(J.del('a.b.d').value(), {"a":{"b":{}}});
+
+        done();
+    });
+
+    it('should change key from a to b', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.move('a.b.c', 'a.r.q').value(), {"a":{"b":{},"r":{"q":"OK!"}}});
 
         done();
     });
