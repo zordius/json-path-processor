@@ -125,7 +125,7 @@ describe('json-path-processor', function () {
     it('should copy value from a to b', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
-        assert.deepEqual(J.cp('a.b.c', 'a.r.q').value(), {"a":{"b":{c: 'OK!'},"r":{"q":"OK!"}}});
+        assert.deepEqual(J.copy('a.b.c', 'a.r.q').value(), {"a":{"b":{c: 'OK!'},"r":{"q":"OK!"}}});
 
         done();
     });

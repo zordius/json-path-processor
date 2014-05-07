@@ -87,7 +87,7 @@ JPP.prototype = {
         }
         return this;
     },
-    cp: function (from, to, skip) {
+    copy: function (from, to, skip) {
         return this.set(to, this.value(from), skip ? undefined : null);
     },
     del: function (path) {
