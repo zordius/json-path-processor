@@ -19,7 +19,9 @@ var lodash = require('lodash'),
                 OO = OO[key];
             } else {
                 if (create) {
-                    OO[key] = {};
+                    if (P.length) {
+                        OO[key] = {};
+                    }
                     OO = OO[key];
                 } else {
                     return null;
@@ -45,8 +47,12 @@ var lodash = require('lodash'),
 
         return OO;
     },
-    lodash_wrap = function (obj, method, path, cb) {
+    lodash_wrap = function (obj, method, path, cb, elsecb) {
         jsonpath(obj, path, function (O) {
+            var T = (typeof O);
+            if ((T !== 'object') && (T !== 'array')) {
+                return (elsecb && elsecb.call) ? elsecb(O) : undefined;
+            }
             return lodash[method](O, function (OO, index, obj) {
                 try {
                     O[index] = cb(OO, index, obj);
@@ -54,7 +60,7 @@ var lodash = require('lodash'),
                     debug(E);
                 }
             });
-        });
+        }, elsecb ? true : undefined);
     };
 
 function JPP (data) {
@@ -76,12 +82,12 @@ JPP.prototype = {
         }
         return this;
     },
-    each: function (path, cb) {
-        lodash_wrap(this._data, 'each', path, cb);
+    each: function (path, cb, elsecb) {
+        lodash_wrap(this._data, 'each', path, cb, elsecb);
         return this;
     },
-    forIn: function (path, cb) {
-        lodash_wrap(this._data, 'forIn', path, cb);
+    forIn: function (path, cb, elsecb) {
+        lodash_wrap(this._data, 'forIn', path, cb, elsecb);
         return this;
     }
 };

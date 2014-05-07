@@ -134,6 +134,17 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should call elsecb when path not found in each()', function (done) {
+        var J = jpp({a: {b: {c: {0: 0, 1: 1, 2: 2, length: 4}, d: 'OK!'}}});
+
+        assert.deepEqual(J.each('a.b.e', function (O, index) {
+            return O + '!';
+        }, function (O) {
+            return (O == undefined) ? 'UNDEFINED' : O;
+        }).value(), {a:{b:{c:{0:0, 1:1, 2:2 ,length:4},d:'OK!', e:'UNDEFINED'}}});
+        done();
+    });
+
     it('should each properties when length property exists in forIn()' , function (done) {
         var J = jpp({a: {b: {c: {0: 0, 1: 1, 2: 2, length: 4}, d: 'OK!'}}});
 
