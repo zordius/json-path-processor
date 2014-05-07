@@ -34,6 +34,13 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should get undefined when not found', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.equal(J.value('a.b.d'), undefined);
+        done();
+    });
+
     it('should set value by json path', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
