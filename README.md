@@ -78,16 +78,22 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value());
 ```
 
-* **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
+* **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for none array or object case.
 
 ```javascript
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
     return V * 2;
-}).value());  // will get {a: b: [2, 6, 10]}
+}).value());  // will get {a: {b: [2, 6, 10]}}
 
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V, I) { // I as index
     return V * I;
-}).value());  // will get {a: b: [0 , 3, 10]}
+}).value());  // will get {a: {b: [0 , 3, 10]}}
+
+console.log(jpp({a: {b: [1, 3, 5]}}).each('a.c', function (V) {
+    return V * I;
+}, function (O) {
+    return 'ERROR'
+}).value());  // will get {a: {b: [1 , 3, 5], c: 'ERROR'}}
 ```
 
 * **.forIn(path, function (value, key) {...})** : JPP wraped version of `lodash.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object.
