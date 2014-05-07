@@ -18,7 +18,7 @@ var lodash = require('lodash'),
             if (OO[key]) {
                 OO = OO[key];
             } else {
-                if (create) {
+                if (create !== undefined) {
                     if (P.length) {
                         OO[key] = {};
                     }
@@ -86,6 +86,9 @@ JPP.prototype = {
             jsonpath(this, '_data', value, create, del);
         }
         return this;
+    },
+    cp: function (from, to, skip) {
+        return this.set(to, this.value(from), skip ? undefined : null);
     },
     del: function (path) {
         return this.set(path, undefined, false, true);

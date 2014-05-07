@@ -122,6 +122,14 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should copy value from a to b', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.cp('a.b.c', 'a.r.q').value(), {"a":{"b":{c: 'OK!'},"r":{"q":"OK!"}}});
+
+        done();
+    });
+
     it('should set values by callback in each()' , function (done) {
         var J = jpp({a: {b: {c: [1, 2, 3], d: 'OK!'}}});
 
