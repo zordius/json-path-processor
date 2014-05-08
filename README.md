@@ -137,6 +137,12 @@ console.log(jpp({a: {b: [1, 3, 5]}}).forIn('a.c', function (V) {
     return 'ERROR'
 }).value());  // will get {a: {b: [1, 3, 5], c: 'ERROR'}}
 ```
+* **.concat(path, path, path ...)** : search for all values by proviced JSON path, then concat all arraies into one. None array value will be skipped. When array size >= 1, assign the concated array back to first path. Or, do nothing.
+
+```javascript
+// will get {a: {b: {c: [1, 3], d:5}, d: [1, 3, 1,3]}}
+console.log(jpp({a: {b: {c: [1, 3], d: 5}}}).concat('a.d', 'a.b.c', 'a.b.c').value());
+```
 
 Supported JSON Path
 -------------------

@@ -1,6 +1,7 @@
 HISTORY
 =======
 v0.0.6 current trunk
+   * a2ae06865d support .concat()
 
 v0.0.5 https://github.com/zordius/json-path-processor/tree/v0.0.5
    * a525baf955 support failback callback for .each() and .forIn()
