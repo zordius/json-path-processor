@@ -108,6 +108,16 @@ JPP.prototype = {
     forIn: function (path, cb, elsecb) {
         lodash_wrap(this._data, 'forIn', path, cb, elsecb);
         return this;
+    },
+    concat: function () {
+        var all = lodash.map(arguments, this.value, this).reduce(function(O, V) {
+            return (V && V.concat) ? O.concat(V) : O;
+        }, []);
+
+        if (all.length) {
+            this.set(arguments[0], all, true);
+        }
+        return this; 
     }
 };
 

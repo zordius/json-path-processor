@@ -185,4 +185,11 @@ describe('json-path-processor', function () {
         }).value(), {a:{b:{c:{0:'0!',1:'1!',2:'2!',length:'4!'},d:'OK!'}}});
         done();
     });
+
+    it('should concat all arraies into one', function (done) {
+        var J = jpp({a: {b: {c: [1, 3], d: 5}}});
+
+        assert.deepEqual(J.concat('a.d', 'a.b.c', 'a.b.c').value(), {a: {b: {c: [1, 3], d:5}, d: [1, 3, 1,3]}});
+        done();
+    });
 });
