@@ -59,8 +59,12 @@ var lodash = require('lodash'),
                 return (elsecb && elsecb.call) ? elsecb(O) : undefined;
             }
             return lodash[method](O, function (OO, index, obj) {
+                var R;
                 try {
-                    O[index] = cb(OO, index, obj);
+                    R = cb(OO, index, obj);
+                    if (R !== undefined) {
+                        O[index] = R;
+                    }
                 } catch(E) {
                     debug(E);
                 }

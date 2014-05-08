@@ -139,6 +139,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should not change when no return value in each()', function (done) {
+        var J = jpp({a: {b: {c: [1, 2, 3, 4], d: 'OK!'}}});
+
+        assert.deepEqual(J.each('a.b.c', function (O, index) {
+            return (O % 2) ? O * 2 : undefined;
+        }).value(), {a: {b: {c: [2, 2, 6, 4], d: 'OK!'}}});
+        done();
+    });
+
     it('should know index in callback from 2nd argument in each()', function (done) {
         var J = jpp({a: {b: {c: [1, 2, 3], d: 'OK!'}}});
 
