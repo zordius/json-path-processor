@@ -1,7 +1,7 @@
 json-path-processor [![Dependency Status](https://david-dm.org/zordius/json-path-processor.png)](https://david-dm.org/zordius/json-path-processor) [![Build Status](https://travis-ci.org/zordius/json-path-processor.svg?branch=master)](https://travis-ci.org/zordius/json-path-processor)
 ==========
 
-JsonPathProcessor (JPP) - A common data processor target to process data without running try catch hell.
+JsonPathProcessor (JPP) - A common data processor target to process data without running try catch hell, and get/set properties of nested objects.
 
 Install
 -------
@@ -15,6 +15,7 @@ Features
 
 * Chainning
 * Iterate objects by simplified JSONPath
+   * similar packages: <a href="https://www.npmjs.org/package/dotty">dotty</a> , <a href="https://www.npmjs.org/package/doti-access">dot-access</a> , <a href="https://www.npmjs.org/package/deep-get-set">deep-get-set</a> , <a href="https://www.npmjs.org/package/traverse">traverse</a>
 * Catch all throwed error automatically
 
 Usage
