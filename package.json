@@ -1,11 +1,18 @@
 {
   "name": "json-path-processor",
   "version": "0.0.6",
-  "description": "A common data processor target to process data without running try catch hell",
+  "description": "A common data processor target to process data without running try catch hell, and get/set properties of nested objects.",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "keywords": [
+    "object",
+    "dot",
+    "path",
+    "deep",
+    "nested",
+    "access",
     "jsonpath",
     "processor",
+    "forEach",
     "data"
   ],
   "repository": {
