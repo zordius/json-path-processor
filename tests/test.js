@@ -231,4 +231,13 @@ describe('json-path-processor', function () {
         }), 3);
         done();
     });
+
+    it('should find last object by callback', function (done) {
+        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
+
+        assert.deepEqual(J.findLast('a.b.c', function (O) {
+            return O % 2 > 0;
+        }), 5);
+        done();
+    });
 });

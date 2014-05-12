@@ -124,6 +124,13 @@ console.log(jpp({a: {b: 1}}}).range('a.c', 2, 12, 3).value());
 console.log(jpp({a: {b: [1, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
+* **.find(path, args...)** : JPP wraped version of `lodash.findLast()` , return the value. This method can not be chainned.
+
+```javascript
+// will get 5
+console.log(jpp({a: {b: [1, 3, 4, 5]}}}).find('a.b', function (O) {return O%2 > 0}));
+```
+
 * **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.
 
 ```javascript

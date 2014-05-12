@@ -116,6 +116,9 @@ JPP.prototype = {
     find: function (path, cb) {
         return lodash.find(this.value(path), cb, this._data);
     },
+    findLast: function (path, cb) {
+        return lodash.findLast(this.value(path), cb, this._data);
+    },
     range: function (path, a1, a2, a3) {
         this.set(path, lodash.range(a1, a2, a3), []);
         return this;
