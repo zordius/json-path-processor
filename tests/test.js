@@ -201,4 +201,25 @@ describe('json-path-processor', function () {
         assert.deepEqual(J.concat('a.d', 'a.b.c', 'a.b.c').value(), {a: {b: {c: [1, 3], d:5}, d: [1, 3, 1,3]}});
         done();
     });
+
+    it('should create range by count', function (done) {
+        var J = jpp({a: {b: {c: [1, 3], d: 5}}});
+
+        assert.deepEqual(J.range('a.d', 4).value(), {a: {b: {c: [1, 3], d:5}, d: [0,1,2,3]}});
+        done();
+    });
+
+    it('should create range by start and end', function (done) {
+        var J = jpp({a: {b: {c: [1, 3], d: 5}}});
+
+        assert.deepEqual(J.range('a.d', 2, 5).value(), {a: {b: {c: [1, 3], d:5}, d: [2,3,4]}});
+        done();
+    });
+
+    it('should create range by start and end and steps', function (done) {
+        var J = jpp({a: {b: {c: [1, 3], d: 5}}});
+
+        assert.deepEqual(J.range('a.d', 2, 13, 3).value(), {a: {b: {c: [1, 3], d:5}, d: [2,5,8,11]}});
+        done();
+    });
 });

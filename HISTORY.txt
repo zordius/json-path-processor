@@ -1,6 +1,9 @@
 HISTORY
 =======
-v0.0.6 current trunk
+v0.0.7 current trunk
+   *
+
+v0.0.6 https://github.com/zordius/json-path-processor/tree/v0.0.6
    * a2ae06865d support .concat()
    * 71808a1e4a keep original value when no return value in .each() or forIn() callback
 
