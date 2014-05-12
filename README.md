@@ -46,7 +46,7 @@ API document and example
 var J = jpp(['any', 'data', {or: {recursive: {'object'}}}]);
 ```
 
-* **.value(path)** : get value by JSON path. This is the only method can not be chainned. when path is undefined or '' or '$', get whole data.
+* **.value(path)** : get value by JSON path. This method can not be chainned. When path is undefined or '' or '$', get whole data.
 
 ```javascript
 console.log(jpp([1, 3, 5]).value()); // will get [1, 3, 5]
@@ -114,6 +114,14 @@ console.log(jpp({a: {b: 1}}}).range('a.c', 3, 5).value());
 
 // will get {a: {b: 1, c: [2, 5, 8, 11]}}
 console.log(jpp({a: {b: 1}}}).range('a.c', 2, 12, 3).value());
+```
+
+
+* **.find(path, args...)** : JPP wraped version of `lodash.find()` , return the value. This method can not be chainned.
+
+```javascript
+// will get 3
+console.log(jpp({a: {b: [1, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
 * **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.

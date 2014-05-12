@@ -222,4 +222,13 @@ describe('json-path-processor', function () {
         assert.deepEqual(J.range('a.d', 2, 13, 3).value(), {a: {b: {c: [1, 3], d:5}, d: [2,5,8,11]}});
         done();
     });
+
+    it('should find first object by callback', function (done) {
+        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
+
+        assert.deepEqual(J.find('a.b.c', function (O) {
+            return O % 2 > 0;
+        }), 3);
+        done();
+    });
 });
