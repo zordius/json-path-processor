@@ -103,6 +103,20 @@ console.log(jpp({a: {b: {c: {d: 2, q: 1}}}}).del('a.b.c').value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).move('a.c', 'a.d').value());
 ```
 
+* **.range(path, args...)** : JPP wraped version of `lodash.range()` , create range and set the array into the path.
+
+```javascript
+// will get {a: {b: 1, c: [0, 1, 2]}}
+console.log(jpp({a: {b: 1}}}).range('a.c', 3).value());
+
+
+// will get {a: {b: 1, c: [3, 4]}}
+console.log(jpp({a: {b: 1}}}).range('a.c', 3, 5).value());
+
+// will get {a: {b: 1, c: [2, 5, 8, 11]}}
+console.log(jpp({a: {b: 1}}}).range('a.c', 2, 12, 3).value());
+```
+
 * **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.
 
 ```javascript
