@@ -109,7 +109,6 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).move('a.c', 'a.d').value());
 // will get {a: {b: 1, c: [0, 1, 2]}}
 console.log(jpp({a: {b: 1}}}).range('a.c', 3).value());
 
-
 // will get {a: {b: 1, c: [3, 4]}}
 console.log(jpp({a: {b: 1}}}).range('a.c', 3, 5).value());
 
