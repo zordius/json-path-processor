@@ -124,7 +124,7 @@ console.log(jpp({a: {b: 1}}}).range('a.c', 2, 12, 3).value());
 console.log(jpp({a: {b: [1, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
-* **.find(path, args...)** : JPP wraped version of `lodash.findLast()` , return the value. This method can not be chainned.
+* **.findLast(path, args...)** : JPP wraped version of `lodash.findLast()` , return the value. This method can not be chainned.
 
 ```javascript
 // will get 5
