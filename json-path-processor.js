@@ -89,7 +89,7 @@ JPP.prototype = {
     },
     set: function (path, value, create, del) {
         if (path && path !== '$') {
-            if (create && ((this._data == null) || (typeof this._data !== 'object'))) {
+            if (create && ((this._data === null) || (typeof this._data !== 'object'))) {
                 this._data = {};
             }
             jsonpath(this._data, path, value, create, del);
