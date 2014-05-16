@@ -65,7 +65,6 @@ describe('json-path-processor', function () {
         done();
     });
 
-
     it('should set self by empty json path', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
@@ -77,6 +76,11 @@ describe('json-path-processor', function () {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
         assert.deepEqual(J.set('a.d.e', '?!', true).value(), {a: {b: {c: 'OK!'}, d: {e: '?!'}}});
+        done();
+    });
+
+    it('should create new object when input null', function (done) {
+        assert.deepEqual(jpp().set('a.d.e', '?!', true).value(), {a: {d: {e: '?!'}}});
         done();
     });
 

@@ -16,14 +16,6 @@ var lodash = require('lodash'),
                 continue;
             }
 
-            if (!OO) {
-                if (create) {
-                    OO = {};
-                } else {
-                    return undefined;
-                }
-            }
-
             if (OO[key]) {
                 OO = OO[key];
             } else {
@@ -87,6 +79,9 @@ function JPP (data) {
 
 JPP.prototype = {
     value: function (path) {
+        if (!this._data) { 
+            return this._data;
+        }
         return path ? jsonpath(this._data, path) : this._data;
     },
     get: function (path) {
@@ -94,6 +89,9 @@ JPP.prototype = {
     },
     set: function (path, value, create, del) {
         if (path && path !== '$') {
+            if (create && ((this._data == null) || (this._data == undefined))) {
+                this._data = {};
+            }
             jsonpath(this._data, path, value, create, del);
         } else {
             jsonpath(this, '_data', value, create, del);
