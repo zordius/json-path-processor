@@ -1,10 +1,12 @@
 HISTORY
 =======
-v0.0.7 current trunk
+v0.0.8 current trunk
+   * bc9c9c4193 prevent error when input is number or null or undefined
+
+v0.0.7 https://github.com/zordius/json-path-processor/tree/v0.0.7
    * b5279ac1ef support .range()
    * f1ce698e8f support .find()
    * f95951b2f3 support .findLast()
-   * bc9c9c4193 prevent error when input is number or null or undefined
 
 v0.0.6 https://github.com/zordius/json-path-processor/tree/v0.0.6
    * a2ae06865d support .concat()
