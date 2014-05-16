@@ -1,6 +1,9 @@
 HISTORY
 =======
-v0.0.8 current trunk
+v0.0.9 current trunk
+   * 684b4d57d2 prevent error when input is number or null or undefined then .each(), .forIn()
+
+v0.0.8 https://github.com/zordius/json-path-processor/tree/v0.0.8
    * bc9c9c4193 prevent error when input is number or null or undefined
 
 v0.0.7 https://github.com/zordius/json-path-processor/tree/v0.0.7
