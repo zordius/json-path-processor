@@ -15,6 +15,15 @@ var lodash = require('lodash'),
             case '$':
                 continue;
             }
+
+            if (!OO) {
+                if (create) {
+                    OO = {};
+                } else {
+                    return undefined;
+                }
+            }
+
             if (OO[key]) {
                 OO = OO[key];
             } else {

@@ -41,6 +41,11 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should safe when input is undefined', function (done) {
+        assert.equal(jpp(null).value('a.b.d'), null);
+        done();
+    });
+
     it('should set value by json path', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
