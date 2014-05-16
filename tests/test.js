@@ -217,8 +217,19 @@ describe('json-path-processor', function () {
 
     it('should be safe when input null then .each()' , function (done) {
         assert.deepEqual(jpp(null).each('a.b.c', function (O, index) {
-            return O + '!';
         }).value(), null);
+        done();
+    });
+
+    it('should be safe when input undefined then .each()' , function (done) {
+        assert.deepEqual(jpp().each('a.b.c', function (O, index) {
+        }).value(), undefined);
+        done();
+    });
+
+    it('should be safe when input 0 then .each()' , function (done) {
+        assert.deepEqual(jpp(0).each('a.b.c', function (O, index) {
+        }).value(), 0);
         done();
     });
 
