@@ -79,8 +79,23 @@ describe('json-path-processor', function () {
         done();
     });
 
-    it('should create new object when input null', function (done) {
+    it('should create new object when input is undefined', function (done) {
         assert.deepEqual(jpp().set('a.d.e', '?!', true).value(), {a: {d: {e: '?!'}}});
+        done();
+    });
+
+    it('should create new object when input is null', function (done) {
+        assert.deepEqual(jpp(null).set('a.d.e', '?!', true).value(), {a: {d: {e: '?!'}}});
+        done();
+    });
+
+    it('should create new object when input is 0', function (done) {
+        assert.deepEqual(jpp(0).set('a.d.e', '?!', true).value(), {a: {d: {e: '?!'}}});
+        done();
+    });
+
+    it('should create new object when input is 1', function (done) {
+        assert.deepEqual(jpp(1).set('a.d.e', '?!', true).value(), {a: {d: {e: '?!'}}});
         done();
     });
 
