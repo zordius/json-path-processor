@@ -54,6 +54,9 @@ var lodash = require('lodash'),
         return OO;
     },
     lodash_wrap = function (obj, method, path, cb, elsecb) {
+        if (!obj) {
+            return obj;
+        }
         jsonpath(obj, path, function (O) {
             var T = (typeof O);
             if ((T !== 'object') && (T !== 'array')) {

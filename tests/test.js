@@ -215,6 +215,13 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should be safe when input null then .each()' , function (done) {
+        assert.deepEqual(jpp(null).each('a.b.c', function (O, index) {
+            return O + '!';
+        }).value(), null);
+        done();
+    });
+
     it('should each properties when length property exists in forIn()' , function (done) {
         var J = jpp({a: {b: {c: {0: 0, 1: 1, 2: 2, length: 4}, d: 'OK!'}}});
 
