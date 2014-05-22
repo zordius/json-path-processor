@@ -76,7 +76,7 @@ console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?').value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.d', 'OK?', true).value());
 
 // a.b.c[2 ~ 9] will become undefined ... ARRAY SIZE AUTO EXPEND IN JAVASCRIPT
-console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.b.c.10', 'OK?', true).value());
+console.log(jpp({a: {b: 'OK', c: [1, 4]}}).set('a.c.10', 'OK?', true).value());
 ```
 
 * **.copy(from, to, skip)** : copy value from one JSON path to another. When the JSON path not found, new object will be created. To prevent new object creation, pass skip as true as 3rd param.
@@ -121,7 +121,7 @@ console.log(jpp({a: {b: 1}}}).range('a.c', 2, 12, 3).value());
 
 ```javascript
 // will get 3
-console.log(jpp({a: {b: [1, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0}));
+console.log(jpp({a: {b: [0, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
 * **.findLast(path, args...)** : JPP wraped version of `lodash.findLast()` , return the value. This method can not be chainned.
