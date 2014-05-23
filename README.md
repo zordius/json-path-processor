@@ -174,7 +174,7 @@ console.log(jpp({a: {b: [1, 3, 5]}}).forIn('a.c', function (V) {
 }).value());  // will get {a: {b: [1, 3, 5], c: 'ERROR'}}
 ```
 
-* ** .filter(path, function (value, key) {...})** : JPP wraped version of `lodash.filter()`, the callback are: value, index|key. The filtered result will be assigned back to JPP object.
+* **.filter(path, function (value, key) {...})** : JPP wraped version of `lodash.filter()`, the callback are: value, index|key. The filtered result will be assigned back to JPP object.
 
 ```javascript
 // will get {a: {b: {c: [3, 5], d:5}}}
