@@ -31,10 +31,12 @@
   "main": "./json-path-processor.js",
   "devDependencies": {
     "jsonlint": "1.6.0",
-    "jshint": "2.5.1",
     "chai": "*",
     "istanbul": "*",
     "mocha": "*"
+  },
+  "optionalDependencies": {
+    "jshint": "2.5.1"
   },
   "optionalDependencies": {},
   "engines": {
