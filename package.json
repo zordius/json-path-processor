@@ -13,7 +13,8 @@
     "jsonpath",
     "processor",
     "forEach",
-    "data"
+    "data",
+    "jpp"
   ],
   "repository": {
     "type": "git",
