@@ -145,6 +145,6 @@ JPP.prototype = {
     }
 };
 
-module.exports = function (data) {
-    return new JPP(data);
+module.exports = function (data, path) {
+    return path ? jsonpath(data, path) : (new JPP(data));
 };

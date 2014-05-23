@@ -8,6 +8,11 @@ var assert = require('assert'),
     jpp = require('../json-path-processor');
 
 describe('json-path-processor', function () {
+    it('should be a fast return value function', function (done) {
+        assert.equal(3, jpp({a: {b: {c: 3}}}, 'a.b.c'));
+        done();
+    });
+
     it('should be an object', function (done) {
         var J = jpp([1, 2, 3]);
         assert.equal(typeof J, 'object'); 

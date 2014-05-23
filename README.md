@@ -46,6 +46,13 @@ API document and example
 var J = jpp(['any', 'data', {or: {recursive: {'object'}}}]);
 ```
 
+* **jpp(data, path)** : a shortcut of jpp(data).value(path)
+
+```javascript
+console.log(jpp({a: {b: 'OK'}}, 'a.b')); // will get 'OK'
+console.log(jpp({a: {b: 'OK'}}, 'a.c.d')); // will get undefined
+```
+
 * **.value(path)** : get value by JSON path. This method can not be chainned. When path is undefined or '' or '$', get whole data.
 
 ```javascript
