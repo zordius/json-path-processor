@@ -66,11 +66,17 @@ var lodash = require('lodash'),
                 var R;
                 try {
                     R = cb(OO, index, obj);
+                    if (method == 'filter') {
+                        return R;
+                    }
                     if (R !== undefined) {
                         O[index] = R;
                     }
                 } catch(E) {
                     debug(E);
+                    if (method == 'filter') {
+                        return true;
+                    }
                 }
             });
         }, elsecb ? true : undefined);
@@ -121,6 +127,10 @@ JPP.prototype = {
     },
     forIn: function (path, cb, elsecb) {
         lodash_wrap(this._data, 'forIn', path, cb, elsecb);
+        return this;
+    },
+    filter: function (path, cb, elsecb) {
+        lodash_wrap(this._data, 'filter', path, cb, elsecb);
         return this;
     },
     find: function (path, cb) {

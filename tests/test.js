@@ -292,4 +292,13 @@ describe('json-path-processor', function () {
         }), 5);
         done();
     });
+
+    it('should be filtered by even', function (done) {
+        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
+
+        assert.deepEqual(J.filter('a.b.c', function (O) {
+            return O % 2 > 0;
+        }).value(), {a: {b: {c: [3, 5], d:5}}});
+        done();
+    });
 });
