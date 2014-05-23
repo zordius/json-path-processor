@@ -173,6 +173,16 @@ console.log(jpp({a: {b: [1, 3, 5]}}).forIn('a.c', function (V) {
     return 'ERROR'
 }).value());  // will get {a: {b: [1, 3, 5], c: 'ERROR'}}
 ```
+
+* ** .filter(path, function (value, key) {...})** : JPP wraped version of `lodash.filter()`, the callback are: value, index|key. The filtered result will be assigned back to JPP object.
+
+```javascript
+// will get {a: {b: {c: [3, 5], d:5}}}
+console.log(jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}}).filter('a.b.c', function (V) {
+    return V % 2 > 0;
+}).value()); 
+```
+
 * **.concat(path, path, path ...)** : search for all values by proviced JSON path, then concat all arraies into one. None array value will be skipped. When array size >= 1, assign the concated array back to first path. Or, do nothing.
 
 ```javascript
