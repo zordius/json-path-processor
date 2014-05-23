@@ -1,6 +1,10 @@
 HISTORY
 =======
-v0.0.9 current trunk
+v0.1.0 current trunk
+   * c1c75f8910 support fast return by jpp(data, path)
+
+
+v0.0.9 https://github.com/zordius/json-path-processor/tree/v0.0.9
    * 684b4d57d2 prevent error when input is number or null or undefined then .each(), .forIn()
 
 v0.0.8 https://github.com/zordius/json-path-processor/tree/v0.0.8
