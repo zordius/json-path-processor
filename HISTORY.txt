@@ -1,6 +1,10 @@
 HISTORY
 =======
-v0.1.0 current trunk
+v0.1.1 current trunk
+   * b225837a20 now can accept empty path when .each() or .forIn()
+   * 66d52ac27f update dependency
+
+v0.1.0 https://github.com/zordius/json-path-processor/tree/v0.1.0
    * c1c75f8910 support fast return by jpp(data, path)
    * 15d2870a37 support .filter()
 
