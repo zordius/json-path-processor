@@ -9,10 +9,11 @@ var lodash = require('lodash'),
             O = obj,
             key;
 
-        while (true) {
+        while (P.length) {
             key = P.pop();
             switch (key) {
             case '$':
+            case '':
                 continue;
             }
 
@@ -31,9 +32,6 @@ var lodash = require('lodash'),
             if (P.length === 1) {
                 O = OO;
             }
-            if (P.length === 0) {
-                break;
-            }
         }
 
         if (del) {
@@ -41,12 +39,18 @@ var lodash = require('lodash'),
             return OO;
         }
 
-        if (assign && key) {
+        if (assign) {
             try {
-                O[key] = assign.call ? assign(OO) : assign;
+                if (key) {
+                    O[key] = assign.call ? assign(OO) : assign;
+                } else {
+                    O = assign.call ? assign(OO) : assign;
+                }
             } catch (E) {
-                if (create) {
-                    O[key] = create;
+                if (create && key) {
+                    if (key) {
+                        O[key] = create;
+                    }
                 }
             }
         }

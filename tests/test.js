@@ -220,6 +220,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should work great when path to self in each()', function (done) {
+        var J = jpp({a: {b: {c: [2, 4, 9]}}});
+
+        assert.deepEqual(J.get('a.b.c').each('', function (O, index) {
+            return O + '!';
+        }).value(), ['2!', '4!', '9!']);
+        done();
+    });
+
     it('should be safe when input null then .each()' , function (done) {
         assert.deepEqual(jpp(null).each('a.b.c', function (O, index) {
         }).value(), null);
