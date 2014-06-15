@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "lodash": "~2.4.1",
-    "debug": "~0.8.0"
+    "debug": "1.0.2"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/**/*.js --reporter spec",
