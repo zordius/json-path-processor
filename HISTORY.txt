@@ -1,6 +1,9 @@
 HISTORY
 =======
-v0.1.1 current trunk
+v0.1.2 current trunk
+   * 8def5ba633 fix bug when .set() on null or undefined
+
+v0.1.1 https://github.com/zordius/json-path-processor/tree/v0.1.1
    * b225837a20 now can accept empty path when .each() or .forIn()
    * 66d52ac27f update dependency
 
