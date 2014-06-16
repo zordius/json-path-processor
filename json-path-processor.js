@@ -5,9 +5,13 @@ var lodash = require('lodash'),
     debug = require('debug')('json-path-processor'),
     jsonpath = function (obj, path, assign, create, del) {
         var P = path ? path.split(/\./).reverse() : [],
-            OO = obj,
+            OO = obj ? obj : (create ? {} : null),
             O = obj,
             key;
+
+        if ((OO === null) && !create) {
+            return undefined;
+        }
 
         while (P.length) {
             key = P.pop();

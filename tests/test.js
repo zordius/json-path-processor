@@ -121,6 +121,11 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should be ok when set on null', function (done) {
+        assert.deepEqual(null, jpp(null).set('a.b', 1).value());
+        done();
+    });
+
     it('should set null by json path and callback', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
