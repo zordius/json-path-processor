@@ -30,8 +30,21 @@
     "build_std": "browserify json-path-processor.js --s JsonPathProcessor -o dist/jpp.js",
     "build_dbg": "browserify json-path-processor.js -d --s JsonPathProcessor -o dist/jpp-dbg.js",
     "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
-    "build_test": "browserify tests/test.js -o tests/browser_test.js",
-    "test": "./node_modules/.bin/mocha tests/**/*.js --reporter spec"
+    "test": "mocha tests/**/*.js --reporter spec"
+  },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "tests/**/*.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
