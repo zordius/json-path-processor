@@ -53,7 +53,7 @@
     "istanbul": "*",
     "jsonlint": "*",
     "mocha": "*",
-    "uglify-js": "*",
+    "uglify-js": "*"
   },
   "optionalDependencies": {},
   "engines": {
