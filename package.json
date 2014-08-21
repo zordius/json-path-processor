@@ -48,12 +48,12 @@
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
-    "browserify": "^5.10.1",
+    "browserify": "*",
     "chai": "*",
     "istanbul": "*",
-    "jsonlint": "1.6.0",
+    "jsonlint": "*",
     "mocha": "*",
-    "uglify-js": "^2.4.15"
+    "uglify-js": "*",
   },
   "optionalDependencies": {},
   "engines": {
