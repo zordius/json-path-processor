@@ -74,7 +74,7 @@ var lodash = require('lodash'),
                 var R;
                 try {
                     R = cb(OO, index, obj);
-                    if (method == 'filter') {
+                    if (method === 'filter') {
                         return R;
                     }
                     if (R !== undefined) {
@@ -82,7 +82,7 @@ var lodash = require('lodash'),
                     }
                 } catch(E) {
                     debug(E);
-                    if (method == 'filter') {
+                    if (method === 'filter') {
                         return true;
                     }
                 }
