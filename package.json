@@ -25,26 +25,12 @@
     "lodash": "~2.4.1"
   },
   "scripts": {
-    "coverage": "node node_modules/istanbul/lib/cli.js cover -- ./node_modules/mocha/bin/_mocha tests/ --recursive --reporter xunit-file",
+    "coverage": "node node_modules/istanbul/lib/cli.js cover -- ./node_modules/mocha/bin/_mocha test/ --recursive --reporter xunit-file",
     "lint": "jshint json-path-processor.js",
     "build_std": "browserify json-path-processor.js --s JsonPathProcessor -o dist/jpp.js",
     "build_dbg": "browserify json-path-processor.js -d --s JsonPathProcessor -o dist/jpp-dbg.js",
     "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
-    "test": "mocha tests/**/*.js --reporter spec"
-  },
-  "testling": {
-    "harness": "mocha-bdd",
-    "files": "tests/**/*.js",
-    "browsers": [
-      "ie/6..latest",
-      "chrome/22..latest",
-      "firefox/16..latest",
-      "safari/6..latest",
-      "opera/11.0..latest",
-      "iphone/6",
-      "ipad/6",
-      "android-browser/latest"
-    ]
+    "test": "mocha --reporter spec"
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
