@@ -25,16 +25,23 @@
     "lodash": "~2.4.1"
   },
   "scripts": {
+    "build_std": "browserify json-path-processor.js -s JsonPathProcessor -o dist/jpp.js",
+    "build_req": "browserify json-path-processor.js -r ../json-path-processor -o dist/jpp-req.js",
+    "build_dbg": "browserify json-path-processor.js -d -s JsonPathProcessor -o dist/jpp-dbg.js",
+    "build_tst": "browserify test/test.js -x ../json-path-processor -o dist/browserTest.js",
+    "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
     "coverage": "node node_modules/istanbul/lib/cli.js cover -- ./node_modules/mocha/bin/_mocha test/ --recursive --reporter xunit-file",
     "lint": "jshint json-path-processor.js",
-    "build_std": "browserify json-path-processor.js --s JsonPathProcessor -o dist/jpp.js",
-    "build_dbg": "browserify json-path-processor.js -d --s JsonPathProcessor -o dist/jpp-dbg.js",
-    "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
     "test": "mocha --reporter spec"
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
     "chai": "*",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-connect": "^0.8.0",
+    "grunt-saucelabs": "^8.3.1",
+    "grunt-shell": "^1.0.1",
     "istanbul": "*",
     "jsonlint": "*",
     "mocha": "*"
