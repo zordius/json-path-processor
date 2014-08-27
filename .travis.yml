@@ -3,11 +3,10 @@ node_js:
   - '0.8'
   - '0.10'
   - '0.11'
-before_script:
-  - npm install
 script:
+  - npm run-script lint
   - npm test
-  - node_modules/.bin/grunt
+  - ./travis.sh
 env:
   global:
     - secure: eQZof8/hMB/0HFtSxsPdmE3ISErYXF2yrXzjuWEQTZ1qO69vrIoKsBaNZfB6UxfXt8MzfbZAqQWW55jqA7g9UFJ+vukwH0ohuYnt5rOg6o1OBp2j+pfzZ3EXDmtM3PXB3R1Y0HxGDIieIBd85AOfQ0zMcRoik8A5wz5/frSXN6Q=

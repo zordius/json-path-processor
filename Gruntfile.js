@@ -29,23 +29,11 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
-    shell: {
-      build: {
-        command: 'npm run-script build_std && npm run-script build_dbg && npm run-script build_min && npm run-script build_req && npm run-script build_tst'
-      },
-      lint: {
-        command: 'npm run-script lint'
-      },
-      test: {
-        command: 'npm test'
-      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-saucelabs');
-  grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('default', ['shell:lint', 'shell:build', 'shell:test', 'connect:server', 'saucelabs-mocha']);
+  grunt.registerTask('default', ['connect:server', 'saucelabs-mocha']);
 };
