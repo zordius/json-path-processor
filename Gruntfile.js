@@ -15,6 +15,10 @@ module.exports = function (grunt) {
           build: process.env.TRAVIS_JOB_ID,
           urls: ['http://localhost:9999/test/'],
           testname: 'Mocha Unit Test for JPP',
+          sauceConfig: {
+              tags: [process.env.TRAVIS_COMMIT, process.env.TRAVIS_JOB_ID, 'jpp', 'mocha'],
+              public: 'public'
+          },
           detailedError: true,
           concurrency: 2,
           'max-duration': 30,
