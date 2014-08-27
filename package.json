@@ -30,9 +30,9 @@
     "build_dbg": "browserify json-path-processor.js -d -s JsonPathProcessor -o dist/jpp-dbg.js",
     "build_tst": "browserify test/test.js -x ../json-path-processor -o dist/browserTest.js",
     "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
-    "coverage": "node node_modules/istanbul/lib/cli.js cover -- ./node_modules/mocha/bin/_mocha test/ --recursive --reporter xunit-file",
-    "lint": "node_modules/.bin/jshint json-path-processor.js",
-    "test": "node_modules/.bin/mocha --reporter spec"
+    "coverage": "istanbul cover -- _mocha -R spec",
+    "lint": "jshint json-path-processor.js",
+    "test": "mocha -R spec"
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
