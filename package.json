@@ -36,19 +36,12 @@
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
+    "browserify": "*",
     "chai": "*",
-    "grunt": "*",
-    "grunt-cli": "*",
-    "grunt-contrib-connect": "*",
-    "grunt-saucelabs": "*",
-    "grunt-shell": "*",
     "istanbul": "*",
     "jshint": "*",
     "jsonlint": "*",
-    "mocha": "*"
-  },
-  "optionalDependencies": {
-    "browserify": "*",
+    "mocha": "*",
     "uglify-js": "*"
   },
   "engines": {
