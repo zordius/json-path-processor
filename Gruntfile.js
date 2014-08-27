@@ -16,7 +16,7 @@ module.exports = function (grunt) {
           urls: ['http://localhost:9999/test/'],
           testname: 'Mocha Unit Test for JPP',
           sauceConfig: {
-              tags: [process.env.TRAVIS_COMMIT, process.env.TRAVIS_JOB_ID, 'jpp', 'mocha'],
+              tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'jpp', 'mocha'],
               public: 'public'
           },
           detailedError: true,
