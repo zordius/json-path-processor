@@ -43,6 +43,7 @@
     "grunt-saucelabs": "*",
     "grunt-shell": "*",
     "istanbul": "*",
+    "jshint": "*",
     "jsonlint": "*",
     "mocha": "*"
   },
