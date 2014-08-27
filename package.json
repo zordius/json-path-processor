@@ -38,12 +38,12 @@
   "devDependencies": {
     "chai": "*",
     "istanbul": "*",
-    "jshint": "*",
     "jsonlint": "*",
     "mocha": "*"
   },
   "optionalDependencies": {
     "browserify": "*",
+    "jshint": "*",
     "uglify-js": "*"
   },
   "engines": {
