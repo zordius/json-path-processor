@@ -8,5 +8,5 @@ script:
   - ./travis.sh
 env:
   global:
-    - secure: eQZof8/hMB/0HFtSxsPdmE3ISErYXF2yrXzjuWEQTZ1qO69vrIoKsBaNZfB6UxfXt8MzfbZAqQWW55jqA7g9UFJ+vukwH0ohuYnt5rOg6o1OBp2j+pfzZ3EXDmtM3PXB3R1Y0HxGDIieIBd85AOfQ0zMcRoik8A5wz5/frSXN6Q=
-    - secure: aVD0JtorIGR2qcizgRwMs9o3dowTf1GGFgRthbyY8uzTEdmuIjShxIqUkD1PBsai0kWH5rfdE8zI/ok3t6d0FOuUl4x5fh7sdr64q3LKK/eUdt5MFlhmSB2qbl9Yn1PniXGg2A7DaUuAOus79IuYYP6y3nsayvHAWw0MbCtkHKE=
+    - secure: j1DFNEByPApzxfQDGiegs7ZRsVbLKVNtriVVyod6z+/tzXBCTgpYM6i8Y6eQFP8M2i5vRMFFsWyuwW5jTjMxtnaI2Wtp3QilbTsqigowiVfK9EYR4aMYsGtvJqcjuygCWnuQLp1vyGNkc0RX1likKLOqgHUW+2e2RrFQ37+T8QQ=
+    - secure: jz50/HbD+s1cQDF1tOf00xb4HK5D4RfIZ0qx3qdE4U3Lfz5Kzdn/LW+9IdhdTZE8awBR7LdX/dVh0MQRNYGzPSRGwRS3eE9TszNfUjt0yr2o/5jlR8eeO7YpsBTnDqoFTj4+4SOu64o58S5bDVNe38EVpDGYpZoNUFHiqX39Gow=
