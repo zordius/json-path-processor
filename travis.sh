@@ -19,4 +19,10 @@ npm run-script build_tst
 
 node_modules/.bin/grunt || exit $?
 
-echo "No error~~~"
+# Setup git
+git config --global user.name "Travis-CI"
+git config --global user.email "zordius@yahoo-inc.com"
+
+# Bump npm version and push back to git
+npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
+git push "https://${GHTK}@github.com/zordius/json-path-processor.git" --tags > /dev/null 2>&1
