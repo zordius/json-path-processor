@@ -23,7 +23,6 @@ module.exports = function (grunt) {
           concurrency: 2,
           'max-duration': 60,
           browsers: [
-            {browserName: 'opera'},
             {browserName: 'chrome'},
             {browserName: 'firefox'},
             {browserName: 'safari', version: 7, platform: 'OS X 10.9'},
