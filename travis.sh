@@ -17,4 +17,4 @@ npm run-script build_min
 npm run-script build_req
 npm run-script build_tst
 
-node_modules/.bin/grunt                                                                                                      
+node_modules/.bin/grunt
