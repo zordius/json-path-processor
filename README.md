@@ -49,6 +49,11 @@ data = jpp(data).each('extra.promotion', function (O) {
     O.description = someValue;
     return O;
 }).each('product.title', someUtilFunc).value();
+
+// jpp play on the object reference so you even do not need to assign back!
+jpp(data).each('product', assignProductDefault);
+jpp(data).each('product', changeProductDetail);
+output(data);
 ```
 
 API document and example
