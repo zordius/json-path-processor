@@ -23,6 +23,9 @@ node_modules/.bin/grunt || exit $?
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
+git add dist
+git commit -m "Auto build dist files [ci skip]"
+
 # Bump npm version and push back to git
 npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
 git push "https://${GHTK}@github.com/zordius/json-path-processor.git" --tags > /dev/null 2>&1
