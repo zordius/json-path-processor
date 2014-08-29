@@ -8,7 +8,7 @@ if [ "${TRAVIS_BUILD_NUMBER}.2" != "${TRAVIS_JOB_NUMBER}" ]; then
 fi
 
 # build JS files for dist and test
-npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs
+npm install grunt grunt-cli grunt-contrib-connect grunt-saucelab codeclimate-test-reporter
 
 npm run-script lint
 npm run-script build_std
@@ -16,6 +16,9 @@ npm run-script build_dbg
 npm run-script build_min
 npm run-script build_req
 npm run-script build_tst
+
+# push coverage to codeclimate
+node_modules/.bin/codeclimate < coverage/lcov.info
 
 # do sauce labs tests
 node_modules/.bin/grunt || exit $?
