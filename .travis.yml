@@ -17,5 +17,6 @@ deploy:
   api_key:
     secure: A0R1IEcZNmk3BOXFDpSmEcckGDUHF9YhJf32BbhFc+3vXBFKv2PxokMh+M9fVDZOQMbqeCDm8pQf0qDLXiYWmvDoPtoKBGkOMah3WQGI3Cyr0c/VDdO/2l5bmUPZXqcP8VHeRRrhegrcSB/2EiWXsKBzI6YTRso7WCWKYgOXer0=
   on:
-    tags: true
+    condition: ${TRAVIS_BUILD_NUMBER}.2 = ${TRAVIS_JOB_NUMBER}
+    branch: master
     repo: zordius/json-path-processor
