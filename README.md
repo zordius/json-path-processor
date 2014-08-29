@@ -54,6 +54,12 @@ data = jpp(data).each('extra.promotion', function (O) {
 jpp(data).each('product', assignProductDefault);
 jpp(data).each('product', changeProductDetail);
 output(data);
+
+// chaining is cool, right?
+jpp(data)
+.each('product', playTheProduct)
+.each('product.title', fixProductTitle);
+output(data);
 ```
 
 API document and example
