@@ -3,7 +3,14 @@
 echo "DEBUG ENV: ${TRAVIS_JOB_NUMBER} ${TRAVIS_BUILD_NUMBER} ..."
 
 if [ "${TRAVIS_BUILD_NUMBER}.2" != "${TRAVIS_JOB_NUMBER}" ]; then
-  echo "Only run sauce labs 1 time... quit."
+  echo "Only run sauce labs 1 time 1 commit... quit."
+  exit 0
+fi
+
+# skip browser build, browser test and deploy when json-path-processor.js not changed.
+CODEDIFF=`git diff --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
+if [ -z "$CODEDIFF" ]; then
+  echo json-path-proceccor.js is not changed, SKIP browser build/test and deploy.
   exit 0
 fi
 
@@ -33,13 +40,6 @@ git commit -m "Auto build dist files for ${TRAVIS_COMMIT} [ci skip]"
 
 # push back dist files
 git push "https://${GHTK}@github.com/zordius/json-path-processor.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
-
-CODEDIFF=`git diff --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
-
-if [ -z "$CODEDIFF" ]; then
-  echo json-path-proceccor.js is not changed, SKIP deploy.
-  exit 0
-fi
 
 # Mark this build to deploy
 PUSH_NPM=1
