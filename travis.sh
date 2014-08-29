@@ -17,6 +17,7 @@ npm run-script build_min
 npm run-script build_req
 npm run-script build_tst
 
+# do sauce labs tests
 node_modules/.bin/grunt || exit $?
 
 # Setup git
@@ -24,7 +25,22 @@ git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
 git add dist
-git commit -m "Auto build dist files [ci skip]"
+git commit -m "Auto build dist files for ${TRAVIS_COMMIT} [ci skip]"
+
+# push back dist files
+git push "https://${GHTK}@github.com/zordius/json-path-processor.git" master > /dev/null 2>&1
+
+TRAVIS_COMMIT
+CODEDIFF=`git diff --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
+
+if [ -z "$CODEDIFF" ]; then
+  echo json-path-proceccor.js is not changed, skip deploy.
+  exit 0
+fi
+
+# Mark this build to deploy
+PUSH_NPM=1
+export PUSH_NPM
 
 # Bump npm version and push back to git
 npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
