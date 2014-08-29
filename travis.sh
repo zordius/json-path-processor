@@ -28,13 +28,12 @@ git add dist
 git commit -m "Auto build dist files for ${TRAVIS_COMMIT} [ci skip]"
 
 # push back dist files
-git push "https://${GHTK}@github.com/zordius/json-path-processor.git" master > /dev/null 2>&1
+git push "https://${GHTK}@github.com/zordius/json-path-processor.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
-TRAVIS_COMMIT
 CODEDIFF=`git diff --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
 
 if [ -z "$CODEDIFF" ]; then
-  echo json-path-proceccor.js is not changed, skip deploy.
+  echo json-path-proceccor.js is not changed, SKIP deploy.
   exit 0
 fi
 
