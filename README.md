@@ -1,10 +1,11 @@
-json-path-processor [![Dependency Status](https://david-dm.org/zordius/json-path-processor.png)](https://david-dm.org/zordius/json-path-processor) [![Build Status](https://travis-ci.org/zordius/json-path-processor.svg?branch=master)](https://travis-ci.org/zordius/json-path-processor) [![Test Coverage](https://codeclimate.com/github/zordius/json-path-processor/badges/coverage.svg)](https://codeclimate.com/github/zordius/json-path-processor)
-
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/zordius_jpp.svg)](https://saucelabs.com/u/zordius_jpp)
-
-==========
+json-path-processor
+===================
 
 JsonPathProcessor (JPP) - A common data processor target to process data without running try catch hell, and get/set properties of nested objects.
+
+[![Dependency Status](https://david-dm.org/zordius/json-path-processor.png)](https://david-dm.org/zordius/json-path-processor) [![Build Status](https://travis-ci.org/zordius/json-path-processor.svg?branch=master)](https://travis-ci.org/zordius/json-path-processor) [![Test Coverage](https://codeclimate.com/github/zordius/json-path-processor/badges/coverage.svg)](https://codeclimate.com/github/zordius/json-path-processor)
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/zordius_jpp.svg)](https://saucelabs.com/u/zordius_jpp)
 
 Install
 -------
