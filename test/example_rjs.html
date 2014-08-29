@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JPP require.js example</title>
+</head>
+<body>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+<script>
+require.config({
+ baseUrl: '/dist'
+});
+
+require(['jpp'], function(jpp) {
+ document.body.innerHTML = jpp({
+  a: {
+   b: {
+    c: 'JPP got the data!'
+   }
+  }
+ }, 'a.b.c');
+});
+</script>
+</html>

@@ -7,11 +7,21 @@ JsonPathProcessor (JPP) - A common data processor target to process data without
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/zordius_jpp.svg)](https://saucelabs.com/u/zordius_jpp)
 
-Install
--------
+Installation
+------------
 
-```
+```sh
 npm install json-path-processor
+```
+
+In browser:
+```html
+<script src="dist/jpp.js"></script>
+```
+
+In an AMD loader:
+```javascript
+require('jpp', function (jpp) {/*....*/});
 ```
 
 Features
