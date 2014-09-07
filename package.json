@@ -3,6 +3,16 @@
   "version": "0.1.2",
   "description": "A common data processor target to process data without running try catch hell, and get/set properties of nested objects.",
   "author": "Zordius <zordius@yahoo-inc.com>",
+  "contributors": [
+    {
+      "name": "Zordius Chen",
+      "email": "zordius@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zordius/json-path-processor.git"
+  },
   "keywords": [
     "object",
     "dot",
@@ -16,10 +26,6 @@
     "data",
     "jpp"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/zordius/json-path-processor.git"
-  },
   "dependencies": {
     "debug": "1.0.2",
     "lodash": "~2.4.1"
@@ -47,7 +53,7 @@
     "uglify-js": "*"
   },
   "engines": {
-    "node": ">=0.4.12"
+    "node": ">=0.8"
   },
   "bugs": {
     "url": "https://github.com/zordius/json-path-processor/issues"
