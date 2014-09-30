@@ -1,7 +1,6 @@
 'use strict';
 
 var lodash = require('lodash'),
-    debug = require('debug')('json-path-processor'),
     jsonpath = function (obj, path, assign, create, del) {
         var P = path ? path.split(/\./).reverse() : [],
             OO = obj ? obj : (create ? {} : null),
@@ -80,7 +79,6 @@ var lodash = require('lodash'),
                         O[index] = R;
                     }
                 } catch(E) {
-                    debug(E);
                     if (method === 'filter') {
                         return true;
                     }
