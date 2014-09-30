@@ -1,6 +1,3 @@
-/*jslint indent:4, nomen:true, white:true, node:true */
-/*global describe, it */
-
 'use strict';
 
 var assert = require('assert'),
