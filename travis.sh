@@ -8,7 +8,7 @@ if [ "${TRAVIS_BUILD_NUMBER}.2" != "${TRAVIS_JOB_NUMBER}" ]; then
 fi
 
 # skip browser build, browser test and deploy when json-path-processor.js not changed.
-CODEDIFF=`git diff --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
+CODEDIFF=`git show --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
 if [ -z "$CODEDIFF" ]; then
   echo json-path-proceccor.js is not changed, SKIP browser build/test and deploy.
   exit 0
