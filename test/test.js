@@ -1,7 +1,6 @@
 'use strict';
 
 var assert = require('assert'),
-    debug = require('debug')('tests'),
     jpp = require('../json-path-processor');
 
 describe('json-path-processor', function () {
