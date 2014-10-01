@@ -311,4 +311,14 @@ describe('json-path-processor', function () {
         }).value(), {a: {b: {c: [3, 5], d:5}}});
         done();
     });
+
+    it('should return 0', function (done) {
+        assert.equal(0, jpp({a: {b: {c: 0}}}, 'a.b.c'));
+        done();
+    });
+
+    it('should return empty string', function (done) {
+        assert.equal("", jpp({a: {b: {c: ""}}}, 'a.b.c'));
+        done();
+    });
 });
