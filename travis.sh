@@ -13,6 +13,7 @@ if [ "${TRAVIS_REPO_SLUG}" != "zordius/json-path-processor" ]; then
 fi
 
 # push coverage to codeclimate
+npm install codeclimate-test-reporter
 npm run-script coverage
 node_modules/.bin/codeclimate < coverage/lcov.info
 
@@ -24,7 +25,7 @@ if [ -z "$CODEDIFF" ]; then
 fi
 
 # build JS files for dist and test
-npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs codeclimate-test-reporter
+npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs
 npm run-script lint && npm run-script build_std && npm run-script build_dbg && npm run-script build_min && npm run-script build_req && npm run-script build_tst
 
 CODE=$?
