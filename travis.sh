@@ -25,7 +25,7 @@ if [ -z "$CODEDIFF" ]; then
 fi
 
 # build JS files for dist and test
-npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs
+npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs browser-badge
 npm run-script lint && npm run-script build_std && npm run-script build_dbg && npm run-script build_min && npm run-script build_req && npm run-script build_tst
 
 CODE=$?
@@ -43,6 +43,10 @@ git config --global user.email "zordius@yahoo-inc.com"
 
 git add dist
 git commit -m "Auto build dist files for ${TRAVIS_COMMIT} [ci skip]"
+
+node badge.js
+git add badge.png
+git commit -m "Auto commit browser badge for ${TRAVIS_COMMIT} [ci skip]"
 
 # push back dist files
 git push "https://${GHTK}@github.com/zordius/json-path-processor.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1

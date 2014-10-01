@@ -44,7 +44,8 @@
     "chai": "*",
     "istanbul": "*",
     "jsonlint": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "request": "2.31.0"
   },
   "optionalDependencies": {
     "browserify": "*",
