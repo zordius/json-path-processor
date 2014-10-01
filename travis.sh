@@ -57,5 +57,5 @@ npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
 git push "https://${GHTK}@github.com/zordius/json-path-processor.git" --tags > /dev/null 2>&1
 
 # Deploy to npm
-dpl
+gem install dpl
 dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
