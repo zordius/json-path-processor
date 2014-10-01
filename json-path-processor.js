@@ -20,7 +20,7 @@ var lodash = require('lodash'),
                 continue;
             }
 
-            if (OO[key]) {
+            if (OO[key] !== undefined && OO[key] !== null) {
                 OO = OO[key];
             } else {
                 if (create !== undefined) {
