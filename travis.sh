@@ -7,6 +7,10 @@ if [ "${TRAVIS_BUILD_NUMBER}.2" != "${TRAVIS_JOB_NUMBER}" ]; then
   exit 0
 fi
 
+# push coverage to codeclimate
+npm run-script coverage
+node_modules/.bin/codeclimate < coverage/lcov.info
+
 # skip browser build, browser test and deploy when json-path-processor.js not changed.
 CODEDIFF=`git show --name-only ${TRAVIS_COMMIT} |grep json-path-processor.js`
 if [ -z "$CODEDIFF" ]; then
@@ -16,17 +20,13 @@ fi
 
 # build JS files for dist and test
 npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs codeclimate-test-reporter
+npm run-script lint && npm run-script build_std && npm run-script build_dbg && npm run-script build_min && npm run-script build_req && npm run-script build_tst
 
-npm run-script lint
-npm run-script build_std
-npm run-script build_dbg
-npm run-script build_min
-npm run-script build_req
-npm run-script build_tst
-
-# push coverage to codeclimate
-npm run-script coverage
-node_modules/.bin/codeclimate < coverage/lcov.info
+CODE=$?
+if [ $CODE -ne 0 ]; then
+  echo Build failed, abort.
+  exit 1
+fi
 
 # do sauce labs tests
 node_modules/.bin/grunt || exit $?
