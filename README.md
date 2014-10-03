@@ -29,7 +29,7 @@ Features
 
 * Chainning
 * Iterate objects by simplified JSONPath
-   * similar packages: <a href="https://www.npmjs.org/package/dotty">dotty</a> , <a href="https://www.npmjs.org/package/dot-access">dot-access</a> , <a href="https://www.npmjs.org/package/deep-get-set">deep-get-set</a> , <a href="https://www.npmjs.org/package/traverse">traverse</a>
+   * similar packages: <a href="https://www.npmjs.org/package/dotty">dotty</a> , <a href="https://www.npmjs.org/package/dot-access">dot-access</a> , <a href="https://www.npmjs.org/package/deep-get-set">deep-get-set</a> , <a href="https://www.npmjs.org/package/traverse">traverse</a>, <a href="https://www.npmjs.org/package/lodash-deep">lodash-deep</a>
 * Catch all throwed error automatically
 
 Usage
