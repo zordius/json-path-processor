@@ -19,7 +19,7 @@ REQ({url: 'https://saucelabs.com/rest/v1/zordius_jpp/jobs?full=:get_full_info', 
     });
  
     lodash.map(body, function (D) {
-        var pass = D.passed;
+        var passed = D.passed;
 
         if (D.build !== process.env.TRAVIS_JOB_ID) {
             return;
