@@ -36,18 +36,13 @@
     "build_tst": "browserify test/test.js -x ../json-path-processor -o dist/browserTest.js",
     "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
     "coverage": "istanbul cover -- _mocha -R spec",
-    "lint": "jshint json-path-processor.js",
     "test": "mocha -R spec"
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
     "chai": "*",
     "istanbul": "*",
-    "mocha": "*",
-    "browserify": "*",
-    "request": "*",
-    "jshint": "*",
-    "uglify-js": "*"
+    "mocha": "*"
   },
   "engines": {
     "node": ">=0.8"
