@@ -45,6 +45,7 @@
     "istanbul": "*",
     "mocha": "*",
     "browserify": "*",
+    "request": "*",
     "jshint": "*",
     "uglify-js": "*"
   },
