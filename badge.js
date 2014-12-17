@@ -25,5 +25,5 @@ REQ({url: 'https://saucelabs.com/rest/v1/zordius_jpp/jobs?full=:get_full_info', 
         badge[browsers[D.browser] || D.browser][D.browser_version] = D.passed;
     });
 
-    require('fs').writeFileSync('badge.png', require('browser-badge')(badge), 'binary');
+    console.log(JSON.stringify(badge));
 });
