@@ -25,8 +25,8 @@ REQ({url: 'https://saucelabs.com/rest/v1/zordius_jpp/jobs?full=:get_full_info', 
             return;
         }
 
-        if (passed && passed.match) {
-            passed = passed.replace(/(.+?\..+?)\..+/, '$1');
+        if (passed && passed.split) {
+            passed = passed.split('.').slice(0, 2).join('.');
         }
 
         badge[browsers[D.browser] || D.browser][D.browser_version] = passed;
