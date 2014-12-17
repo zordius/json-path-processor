@@ -19,17 +19,11 @@ REQ({url: 'https://saucelabs.com/rest/v1/zordius_jpp/jobs?full=:get_full_info', 
     });
  
     lodash.map(body, function (D) {
-        var passed = D.passed;
-
         if (D.build !== process.env.TRAVIS_JOB_ID) {
             return;
         }
 
-        if (passed && passed.split) {
-            passed = passed.split('.').slice(0, 2).join('.');
-        }
-
-        badge[browsers[D.browser] || D.browser][D.browser_version] = passed;
+        badge[browsers[D.browser] || D.browser][D.browser_version.split('.').slice(0, 2).join('.')] = D.passed;
     });
 
     console.log(JSON.stringify({browsers: badge}));
