@@ -211,7 +211,29 @@ JPP.prototype = {
         return R;
     },
     range: function (path, a1, a2, a3) {
-        return this;
+        var R = [], I, args = [a1];
+
+        if (a2 !== undefined) {
+            args.push(a2);
+        }
+
+        if (args.length < 2) {
+            args.unshift(0);
+        }
+
+        if (a3 === undefined) {
+            a3 = 1;
+        }
+
+        try {
+            for (I=args[0];I<args[1];I+=a3) {
+                R.push(I);
+            }
+        } catch (E) {
+            // do nothing
+        }
+
+        return this.set(path, R, []);
     },
     concat: function () {
         var all = lodash.map(arguments, this.value, this).reduce(function(O, V) {
