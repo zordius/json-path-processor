@@ -104,7 +104,7 @@ JPP.prototype = {
         var V = this.value(path);
 
         if (!V) {
-            return this.set(path, elsecb);
+            return elsecb ? this.set(path, elsecb, true) : this;
         }
 
         if (Array.isArray(V)) {
@@ -125,7 +125,7 @@ JPP.prototype = {
         var V = this.value(path), R ={};
 
         if (!V) {
-            return this.set(path, elsecb);
+            return elsecb ? this.set(path, elsecb, true) : this;
         }
 
         if (Object.isObject(V)) {
@@ -136,13 +136,31 @@ JPP.prototype = {
                     R[D] = V[D];
                 }
             });
-            return this.set(path, V);
+            return this.set(path, R);
         }
 
         return this;
     },
     filter: function (path, cb, elsecb) {
-        lodash_wrap(this._data, 'filter', path, cb, elsecb);
+        var V = this.value(path), R ={};
+
+        if (!V) {
+            return this.set(path, elsecb);
+        }
+
+        if (Object.isObject(V)) {
+            Object.keys(V).map(function (D) {
+                try {
+                    if (cb(V[D], D)) {
+                        R[D] = V[D];
+                    }
+                } catch (E) {
+                    R[D] = V[D];
+                }
+            });
+            return this.set(path, R);
+        }
+
         return this;
     },
     find: function (path, cb) {
