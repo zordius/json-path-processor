@@ -147,7 +147,7 @@ console.log(jpp({a: {b: {c: {d: 2, q: 1}}}}).del('a.b.c').value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).move('a.c', 'a.d').value());
 ```
 
-* **.range(path, args...)** : JPP wraped version of `lodash.range()` , create range and set the array into the path.
+* **.range(path, args...)** : Work like `lodash.range()` , create range and set the array into the path.
 
 ```javascript
 // will get {a: {b: 1, c: [0, 1, 2]}}
@@ -175,7 +175,7 @@ console.log(jpp({a: {b: [0, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0})
 console.log(jpp({a: {b: [1, 3, 4, 5]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
-* **.each(path, function (value, key) {...})** : Works like Array.map(), the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array. When your callback return undefined or throws, the item in array will not be changed.
+* **.each(path, function (value, key) {...})** : Works like Array.map(), the callback arguments are: value, index. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array. When your callback return undefined or throws, the item in array will not be changed.
 
 ```javascript
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
@@ -194,7 +194,7 @@ console.log(jpp({a: {b: [1, 3, 5]}}).each('a.c', function (V) {
 }).value());  // will get {a: {b: [1 , 3, 5], c: 'ERROR'}}
 ```
 
-* **.forIn(path, function (value, key) {...})** : JPP wraped version of `lodash.forIn()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.
+* **.forIn(path, function (value, key) {...})** : Works like for (I in O), the callback arguments are: value, key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not object. When your callback return undefined or throws, the item in object will not be changed.
 
 ```javascript
 // will get {a: 'OK!', b: 'BAD!', length: '9!'} 
@@ -211,7 +211,7 @@ console.log(jpp({a: {b: [1, 3, 5]}}).forIn('a.c', function (V) {
 }).value());  // will get {a: {b: [1, 3, 5], c: 'ERROR'}}
 ```
 
-* **.filter(path, function (value, key) {...})** : JPP wraped version of `lodash.filter()`, the callback are: value, index|key. The filtered result will be assigned back to JPP object.
+* **.filter(path, function (value, key) {...})** : Works like Array.filter() but also works well on object. the callback are: value, index|key. The filtered result will be assigned back to JPP object.
 
 ```javascript
 // will get {a: {b: {c: [3, 5], d:5}}}
