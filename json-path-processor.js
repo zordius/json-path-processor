@@ -1,4 +1,4 @@
-/*jslint node: true */
+/*jslint node:true */
 'use strict';
 
 var jsonpath = function (obj, path, assign, create, del) {
