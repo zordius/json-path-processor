@@ -201,12 +201,12 @@ describe('json-path-processor', function () {
         done();
     });
 
-    it('should each array when length property exists in each()' , function (done) {
+    it('should only work on array when each()' , function (done) {
         var J = jpp({a: {b: {c: {0: 0, 1: 1, 2: 2, length: 4}, d: 'OK!'}}});
 
         assert.deepEqual(J.each('a.b.c', function (O, index) {
             return O + '!';
-        }).value(), {a:{b:{c:{0:'0!',1:'1!',2:'2!',3:'undefined!',length:4},d:'OK!'}}});
+        }).value(), {a:{b:{c:{0: 0, 1: 1, 2: 2, length: 4},d:'OK!'}}});
         done();
     });
 

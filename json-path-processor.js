@@ -122,7 +122,23 @@ JPP.prototype = {
         return this;
     },
     forIn: function (path, cb, elsecb) {
-        lodash_wrap(this._data, 'forIn', path, cb, elsecb);
+        var V = this.value(path), R ={};
+
+        if (!V) {
+            return this.set(path, elsecb);
+        }
+
+        if (Object.isObject(V)) {
+            Object.keys(V).map(function (D) {
+                try {
+                    R[D] = cb(V[D], D);
+                } catch (E) {
+                    R[D] = V[D];
+                }
+            });
+            return this.set(path, V);
+        }
+
         return this;
     },
     filter: function (path, cb, elsecb) {
