@@ -141,13 +141,25 @@ JPP.prototype = {
         return this;
     },
     filter: function (path, cb, elsecb) {
-        var V = this.value(path), R ={};
+        var V = this.value(path), R;
 
         if (!V) {
             return this.set(path, elsecb);
         }
 
-        if (Object.isObject(V)) {
+        if (Array.isArray(V)) {
+            return this.set(path, V.filter(function (V, I) {
+                var R;
+                try {
+                    return cb(V, I);
+                } catch (E) {
+                    return true;
+                }
+            }));
+        }
+
+        if ('object' === typeof V) {
+            R = {};
             Object.keys(V).map(function (D) {
                 try {
                     if (cb(V[D], D)) {
