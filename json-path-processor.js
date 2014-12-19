@@ -236,13 +236,21 @@ JPP.prototype = {
         return this.set(path, R, []);
     },
     concat: function () {
-        var all = lodash.map(arguments, this.value, this).reduce(function(O, V) {
-            return (V && V.concat) ? O.concat(V) : O;
-        }, []);
+        var args = Array.prototype.slice.call(arguments),
+            all = [];
+
+        args.map(function (P) {
+            var V = this.value(P);
+
+            if (Array.isArray(V)) {
+                all = all.concat(V);
+            }
+        }, this);
 
         if (all.length) {
             this.set(arguments[0], all, true);
         }
+
         return this; 
     }
 };
