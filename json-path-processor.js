@@ -1,8 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-var lodash = require('lodash'),
-    jsonpath = function (obj, path, assign, create, del) {
+var jsonpath = function (obj, path, assign, create, del) {
         var P = path ? path.split(/\./).reverse() : [],
             OO = obj ? obj : (create ? {} : null),
             O = obj,

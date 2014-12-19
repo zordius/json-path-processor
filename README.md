@@ -24,6 +24,11 @@ In an AMD loader:
 require('jpp', function (jpp) {/*....*/});
 ```
 
+In nodejs:
+```javascript
+var jpp =  require('json-path-processor');
+```
+
 Features
 --------
 
@@ -31,6 +36,11 @@ Features
 * Iterate objects by simplified JSONPath
    * similar packages: <a href="https://www.npmjs.org/package/dotty">dotty</a> , <a href="https://www.npmjs.org/package/dot-access">dot-access</a> , <a href="https://www.npmjs.org/package/deep-get-set">deep-get-set</a> , <a href="https://www.npmjs.org/package/traverse">traverse</a>, <a href="https://www.npmjs.org/package/lodash-deep">lodash-deep</a>
 * Catch all throwed error automatically
+
+Upgrade Notice
+--------------
+
+Now JPP stop using lodash and move to ES5. For none ES5 browsers/enviromnent, you should use polyfills to ensure JPP works well. You can try <a href="http://polyfill.io">polyfill.io</a> or <a href="http://polyfills.io/">polyfills.io/</a>.
 
 Usage
 -----
