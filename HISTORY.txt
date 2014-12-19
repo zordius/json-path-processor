@@ -1,6 +1,10 @@
 HISTORY
 =======
 
+v0.2.0 https://github.com/zordius/json-path-processor/releases/tag/v0.2.0
+   * 9fc81c83d5 remove lodash depdency, lodash related method behavior changed
+   * require es5 environment or polyfill
+
 v0.1.2 https://github.com/zordius/json-path-processor/releases/tag/v0.1.2
    * 8def5ba633 fix bug when .set() on null or undefined
 
