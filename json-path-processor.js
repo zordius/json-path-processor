@@ -1,5 +1,6 @@
 /*jslint node: true */
 'use strict';
+var lodash = {};
 
 var jsonpath = function (obj, path, assign, create, del) {
         var P = path ? path.split(/\./).reverse() : [],
@@ -58,33 +59,6 @@ var jsonpath = function (obj, path, assign, create, del) {
         }
 
         return OO;
-    },
-    lodash_wrap = function (obj, method, path, cb, elsecb) {
-        if (!obj) {
-            return obj;
-        }
-        jsonpath(obj, path, function (O) {
-            var T = (typeof O);
-            if ((T !== 'object') && (T !== 'array')) {
-                return (elsecb && elsecb.call) ? elsecb(O) : undefined;
-            }
-            return lodash[method](O, function (OO, index, obj) {
-                var R;
-                try {
-                    R = cb(OO, index, obj);
-                    if (method === 'filter') {
-                        return R;
-                    }
-                    if (R !== undefined) {
-                        O[index] = R;
-                    }
-                } catch(E) {
-                    if (method === 'filter') {
-                        return true;
-                    }
-                }
-            });
-        }, elsecb ? true : undefined);
     };
 
 function JPP (data) {
@@ -127,7 +101,24 @@ JPP.prototype = {
         return this;
     },
     each: function (path, cb, elsecb) {
-        lodash_wrap(this._data, 'each', path, cb, elsecb);
+        var V = this.value(path);
+
+        if (!V) {
+            return this.set(path, elsecb);
+        }
+
+        if (Array.isArray(V)) {
+            return this.set(path, V.map(function (V, I) {
+                var R;
+                try {
+                    R = cb(V, I);
+                    return (R === undefined) ? V : R;
+                } catch (E) {
+                    return V;
+                }
+            }));
+        }
+
         return this;
     },
     forIn: function (path, cb, elsecb) {
