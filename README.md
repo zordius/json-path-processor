@@ -40,7 +40,9 @@ Features
 Upgrade Notice
 --------------
 
-Now JPP stop using lodash and move to ES5. For none ES5 browsers/enviromnent, you should use polyfills to ensure JPP works well. You can try <a href="http://polyfill.io">polyfill.io</a> or <a href="http://polyfills.io/">polyfills.io/</a>.
+* Now JPP stop using lodash and move to ES5. For none ES5 browsers/enviromnent, you should use polyfills to ensure JPP works well. You can try <a href="http://polyfill.io">polyfill.io</a> or <a href="http://polyfills.io/">polyfills.io/</a>.
+
+* Some lodash like method behavior changed, please refer to document.
 
 Usage
 -----
@@ -173,7 +175,7 @@ console.log(jpp({a: {b: [0, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0})
 console.log(jpp({a: {b: [1, 3, 4, 5]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
-* **.each(path, function (value, key) {...})** : JPP wraped version of `lodash.each()`, the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array.
+* **.each(path, function (value, key) {...})** : Works like Array.map(), the callback arguments are: value, index|key. The return value of callback will be assigned back to JPP object. You can apply second callback function for fallback when the path is not found or not array. When your callback return undefined or throws, the item in array will not be changed.
 
 ```javascript
 console.log(jpp({a: {b: [1, 3, 5]}}).each('a.b', function (V) {
