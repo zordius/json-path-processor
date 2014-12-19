@@ -1,6 +1,6 @@
 {
   "name": "json-path-processor",
-  "version": "0.1.3-2",
+  "version": "0.2.0",
   "description": "A common data processor target to process data without running try catch hell, and get/set properties of nested objects.",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "contributors": [
