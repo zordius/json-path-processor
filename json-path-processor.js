@@ -1,6 +1,5 @@
 /*jslint node: true */
 'use strict';
-var lodash = {};
 
 var jsonpath = function (obj, path, assign, create, del) {
         var P = path ? path.split(/\./).reverse() : [],
@@ -128,7 +127,7 @@ JPP.prototype = {
             return elsecb ? this.set(path, elsecb, true) : this;
         }
 
-        if (Object.isObject(V)) {
+        if ('object' === typeof V) {
             Object.keys(V).map(function (D) {
                 try {
                     R[D] = cb(V[D], D);
@@ -164,13 +163,42 @@ JPP.prototype = {
         return this;
     },
     find: function (path, cb) {
-        return lodash.find(this.value(path), cb, this._data);
+        var V = this.value(path), I;
+
+        if (!V) {
+            return;
+        }
+
+        for (I in V) {
+            try {
+                if (cb(V[I])) {
+                    return V[I];
+                }
+            } catch (E) {
+                // do nothing
+            }
+        }
     },
     findLast: function (path, cb) {
-        return lodash.findLast(this.value(path), cb, this._data);
+        var V = this.value(path), I, R;
+
+        if (!V) {
+            return;
+        }
+
+        for (I in V) {
+            try {
+                if (cb(V[I])) {
+                    R = V[I];
+                }
+            } catch (E) {
+                // do nothing
+            }
+        }
+
+        return R;
     },
     range: function (path, a1, a2, a3) {
-        this.set(path, lodash.range(a1, a2, a3), []);
         return this;
     },
     concat: function () {
