@@ -41,7 +41,7 @@ var jsonpath = function (obj, path, assign, create, del) {
             return OO;
         }
 
-        if (assign) {
+        if (assign !== undefined) {
             try {
                 if (key) {
                     O[key] = assign.call ? assign(OO) : assign;

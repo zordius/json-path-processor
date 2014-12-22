@@ -59,6 +59,27 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should set to 0 by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', 0).value(), {a: {b: {c: 0}}});
+        done();
+    });
+
+    it('should set to empty string by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', '').value(), {a: {b: {c: ''}}});
+        done();
+    });
+
+    it('should set to empty array by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', []).value(), {a: {b: {c: []}}});
+        done();
+    });
+
     it('should set self by json path', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
