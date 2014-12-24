@@ -38,11 +38,16 @@ var jsonpath = function (obj, path, assign, create, del) {
         }
 
         if (del) {
-            delete O[key];
+            if(Array.isArray(O)){
+                O.splice(key, 1);
+            }else{
+                delete O[key];
+            }
             return OO;
+
         }
 
-        if (assign) {
+        if (assign !== undefined) {
             try {
                 if (key) {
                     O[key] = assign.call ? assign(OO) : assign;
@@ -1391,6 +1396,27 @@ describe('json-path-processor', function () {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
         assert.deepEqual(J.set('$.a.b.c', 'CHANGE!').value(), {a: {b: {c: 'CHANGE!'}}});
+        done();
+    });
+
+    it('should set to 0 by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', 0).value(), {a: {b: {c: 0}}});
+        done();
+    });
+
+    it('should set to empty string by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', '').value(), {a: {b: {c: ''}}});
+        done();
+    });
+
+    it('should set to empty array by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.set('$.a.b.c', []).value(), {a: {b: {c: []}}});
         done();
     });
 
