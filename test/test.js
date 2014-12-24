@@ -170,6 +170,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should delete an item from the array', function (done) {
+        var J = jpp({a: {b: {c: [1, 3, 5, 7, 9, 10], d: 'Error'}}});
+
+        assert.deepEqual(J.del('a.b.c.3').value(), {"a":{"b":{"c":[1,3,5,9,10],"d":"Error"}}});
+        assert.deepEqual(J.del('a.b.c.4').value(), {"a":{"b":{"c":[1,3,5,9],"d":"Error"}}});
+
+        done();
+    });
+
     it('should change key from a to b', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
