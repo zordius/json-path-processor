@@ -37,8 +37,13 @@ var jsonpath = function (obj, path, assign, create, del) {
         }
 
         if (del) {
-            delete O[key];
+            if(Array.isArray(O)){
+                O.splice(key, 1);
+            }else{
+                delete O[key];
+            }
             return OO;
+
         }
 
         if (assign !== undefined) {
