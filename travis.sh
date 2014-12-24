@@ -52,17 +52,3 @@ git commit -m "Auto commit browser badge for ${TRAVIS_COMMIT} [ci skip]"
 
 # push back dist files
 git push "https://${GHTK}@github.com/zordius/json-path-processor.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
-
-# Skip deploy when not master
-if [ "${TRAVIS_BRANCH}" != "master" ]; then
-  echo skip deploy because now in branch ${TRAVIS_BRANCH}
-  exit 0
-fi
-
-# Bump npm version and push back to git
-npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
-git push "https://${GHTK}@github.com/zordius/json-path-processor.git" --tags > /dev/null 2>&1
-
-# Deploy to npm
-gem install dpl
-dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
