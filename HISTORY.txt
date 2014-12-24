@@ -1,6 +1,12 @@
 HISTORY
 =======
 
+v0.2.2 https://github.com/zordius/json-path-processor/releases/tag/v0.2.2
+   * 0e7bfa9679 properly delete an item from an array
+
+v0.2.1 https://github.com/zordius/json-path-processor/releases/tag/v0.2.1
+   * cc449ad7c7 now can .set() false or 0
+
 v0.2.0 https://github.com/zordius/json-path-processor/releases/tag/v0.2.0
    * 9fc81c83d5 remove lodash depdency, lodash related method behavior changed
    * require es5 environment or polyfill
