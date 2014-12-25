@@ -1375,6 +1375,20 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should get self by json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.value('$'), {a: {b: {c: 'OK!'}}});
+        done();
+    });
+
+    it('should get self by empty json path', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual(J.value(''), {a: {b: {c: 'OK!'}}});
+        done();
+    });
+
     it('should get undefined when not found', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
