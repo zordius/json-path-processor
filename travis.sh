@@ -39,7 +39,7 @@ git commit -m "Auto build dist files for ${TRAVIS_COMMIT} [ci skip]"
 
 node_modules/.bin/badge-saucelabs-results > badge.json
 cat badge.json
-node_modules/.bin/badge-render badge.json badge.html --png badge.png --scale 0.7 -width 420 -height 60
+node_modules/.bin/badge-render badge.json badge.html --png badge.png --scale 0.7 -width 490 -height 60
 git add badge.png
 git commit -m "Auto commit browser badge for ${TRAVIS_COMMIT} [ci skip]"
 
