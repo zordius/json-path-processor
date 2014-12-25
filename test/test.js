@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert'),
-    jpp = require('../json-path-processor');
+    jpp = require('..');
 
 describe('json-path-processor', function () {
     it('should be a fast return value function', function (done) {
