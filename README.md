@@ -40,7 +40,7 @@ Features
 Upgrade Notice
 --------------
 
-* Now JPP stop using lodash and move to ES5. For none ES5 browsers/enviromnent, you should use polyfills to ensure JPP works well. You can try <a href="http://polyfill.io">polyfill.io</a> or <a href="http://polyfills.io/">polyfills.io/</a>.
+* Now JPP stop using lodash and move to ES5. For none ES5 browsers/enviromnent, **you should use polyfills** to ensure JPP works well. You can try <a href="http://polyfill.io">polyfill.io</a> or <a href="http://polyfills.io/">polyfills.io/</a>.
 
 * Some lodash like method behavior changed, please refer to document.
 
