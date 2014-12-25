@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/*jslint node:true */
+/*jslint node: true */
 'use strict';
 
 var jsonpath = function (obj, path, assign, create, del) {
@@ -1341,7 +1341,7 @@ function hasOwnProperty(obj, prop) {
 'use strict';
 
 var assert = require('assert'),
-    jpp = require('../json-path-processor');
+    jpp = require('..');
 
 describe('json-path-processor', function () {
     it('should be a fast return value function', function (done) {
@@ -1506,6 +1506,15 @@ describe('json-path-processor', function () {
 
         assert.deepEqual(J.del('a.b.c').value(), {"a":{"b":{"d":"Error"}}});
         assert.deepEqual(J.del('a.b.d').value(), {"a":{"b":{}}});
+
+        done();
+    });
+
+    it('should delete an item from the array', function (done) {
+        var J = jpp({a: {b: {c: [1, 3, 5, 7, 9, 10], d: 'Error'}}});
+
+        assert.deepEqual(J.del('a.b.c.3').value(), {"a":{"b":{"c":[1,3,5,9,10],"d":"Error"}}});
+        assert.deepEqual(J.del('a.b.c.4').value(), {"a":{"b":{"c":[1,3,5,9],"d":"Error"}}});
 
         done();
     });
@@ -1684,4 +1693,4 @@ describe('json-path-processor', function () {
     });
 });
 
-},{"../json-path-processor":1,"assert":2}]},{},[7]);
+},{"..":1,"assert":2}]},{},[7]);
