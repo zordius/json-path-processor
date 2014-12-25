@@ -147,7 +147,7 @@ console.log(jpp({a: {b: {c: {d: 2, q: 1}}}}).del('a.b.c').value());
 console.log(jpp({a: {b: 'OK', c: [1, 4]}}).move('a.c', 'a.d').value());
 ```
 
-* **.range(path, args...)** : Work like `lodash.range()` , create range and set the array into the path.
+* **.range(path, args...)** : Works like `lodash.range()` , create range and set the array into the path.
 
 ```javascript
 // will get {a: {b: 1, c: [0, 1, 2]}}
@@ -161,14 +161,14 @@ console.log(jpp({a: {b: 1}}}).range('a.c', 2, 12, 3).value());
 ```
 
 
-* **.find(path, args...)** : JPP wraped version of `lodash.find()` , return the value. This method can not be chainned.
+* **.find(path, args...)** : Works like `lodash.find()` , return the value. This method can not be chainned.
 
 ```javascript
 // will get 3
 console.log(jpp({a: {b: [0, 3, 4]}}}).find('a.b', function (O) {return O%2 > 0}));
 ```
 
-* **.findLast(path, args...)** : JPP wraped version of `lodash.findLast()` , return the value. This method can not be chainned.
+* **.findLast(path, args...)** : Works like `lodash.findLast()` , return the value. This method can not be chainned.
 
 ```javascript
 // will get 5
