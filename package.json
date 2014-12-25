@@ -28,9 +28,9 @@
   ],
   "scripts": {
     "build_std": "browserify json-path-processor.js -s JsonPathProcessor -o dist/jpp.js",
-    "build_req": "browserify json-path-processor.js -r ../json-path-processor -o dist/jpp-req.js",
+    "build_req": "browserify json-path-processor.js -r json-path-processor -o dist/jpp-req.js",
     "build_dbg": "browserify json-path-processor.js -d -s JsonPathProcessor -o dist/jpp-dbg.js",
-    "build_tst": "browserify test/test.js -u .. -o dist/browserTest.js",
+    "build_tst": "browserify test/test.js -o dist/browserTest.js",
     "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
     "coverage": "istanbul cover -- _mocha -R spec",
     "test": "mocha -R spec"
