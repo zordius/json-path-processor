@@ -155,7 +155,6 @@ JPP.prototype = {
 
         if (Array.isArray(V)) {
             return this.set(path, V.filter(function (V, I) {
-                var R;
                 try {
                     return cb(V, I);
                 } catch (E) {
@@ -1448,6 +1447,25 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should set value by callback function', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual({a: {b: {c: 'OK!!'}}}, J.set('a.b.c', function (V) {
+            return V + '!';
+        }).value());
+        done();
+    });
+
+    it('should set self by callback function', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual({a: {b: {c: 'OK!'}}, d: 9}, J.set(undefined, function (V) {
+            V.d = 9;
+            return V;
+        }).value());
+        done();
+    });
+
     it('should create new children by json path when not exists', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
@@ -1638,6 +1656,34 @@ describe('json-path-processor', function () {
         assert.deepEqual(J.forIn('a.b.c', function (O, index) {
             return O + '!';
         }).value(), {a:{b:{c:{0:'0!',1:'1!',2:'2!',length:'4!'},d:'OK!'}}});
+        done();
+    });
+
+    it('should do failed callback when forIn() not found', function (done) {
+        var J = jpp({a: {b: {c: 'OK'}}});
+
+        assert.deepEqual(J.forIn('a.b.d', function (V) {
+            return V*2;
+        }, function (V) {
+            return 'YO!';
+        }).value(), {a: {b: {c: 'OK', d: 'YO!'}}});
+        done();
+    });
+
+    it('should do nothing when forIn() on none object', function (done) {
+        var J = jpp({a: {b: {c: 3}}});
+        assert.deepEqual(J.forIn('a.b.c', function (V) {
+            return V*2;
+        }).value(), {a: {b: {c: 3}}});
+        done();
+    });
+
+    it('should handle error when forIn() throws on some keys', function (done) {
+        var J = jpp({a: {b: 0, c: 1, d: 0.5, e: 0, f: 0.25}});
+
+        assert.deepEqual(J.forIn('a', function (V) {
+            return V ? 1/V : V.a.b;
+        }).value(), {a: {b: 0, c: 1, d: 2, e: 0, f: 4}});
         done();
     });
 
