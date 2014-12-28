@@ -339,6 +339,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should handle error when forIn() throws on some keys', function (done) {
+        var J = jpp({a: {b: 0, c: 1, d: 0.5, e: 0, f: 0.25}});
+
+        assert.deepEqual(J.forIn('a', function (V) {
+            return V ? 1/V : V.a.b;
+        }).value(), {a: {b: 0, c: 1, d: 2, e: 0, f: 4}});
+        done();
+    });
+
     it('should concat all arraies into one', function (done) {
         var J = jpp({a: {b: {c: [1, 3], d: 5}}});
 
