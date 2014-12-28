@@ -403,6 +403,17 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should do failed callback when filter() not found', function (done) {
+        var J = jpp({a: {b: {c: 'OK'}}});
+
+        assert.deepEqual(J.filter('a.b.d', function (V) {
+            return V%2;
+        }, function (V) {
+            return 'YO!';
+        }).value(), {a: {b: {c: 'OK', d: 'YO!'}}});
+        done();
+    });
+
     it('should return 0', function (done) {
         assert.equal(0, jpp({a: {b: {c: 0}}}, 'a.b.c'));
         done();

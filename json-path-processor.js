@@ -149,7 +149,7 @@ JPP.prototype = {
         var V = this.value(path), R;
 
         if (!V) {
-            return this.set(path, elsecb);
+            return elsecb ? this.set(path, elsecb, true) : this;
         }
 
         if (Array.isArray(V)) {
