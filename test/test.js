@@ -432,6 +432,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should do nothing when filter() on none object or none array', function (done) {
+        var J = jpp({a: {b: 3}});
+
+        assert.deepEqual(J.filter('a.b', function (V, I) {
+            return I < 4 ? (V%2==1) : V.a.b;
+        }).value(), {a: {b: 3}});
+        done();
+    });
+
     it('should return 0', function (done) {
         assert.equal(0, jpp({a: {b: {c: 0}}}, 'a.b.c'));
         done();
