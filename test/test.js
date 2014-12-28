@@ -331,6 +331,14 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should do nothing when forIn() on none object', function (done) {
+        var J = jpp({a: {b: {c: 3}}});
+        assert.deepEqual(J.forIn('a.b.c', function (V) {
+            return V*2;
+        }).value(), {a: {b: {c: 3}}});
+        done();
+    });
+
     it('should concat all arraies into one', function (done) {
         var J = jpp({a: {b: {c: [1, 3], d: 5}}});
 
