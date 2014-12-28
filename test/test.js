@@ -394,6 +394,13 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should return undefined when find() on none object', function (done) {
+        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 0}}});
+
+        assert.equal(undefined, J.find('a.b.d'));
+        done();
+    });
+
     it('should be filtered by even', function (done) {
         var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
 
