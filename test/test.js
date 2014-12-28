@@ -414,6 +414,15 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should handle error when filter() throws on some keys', function (done) {
+        var J = jpp({a: {b: 0, c: 1, d: 2, e: 3, f: 4, g: 5}});
+
+        assert.deepEqual(J.filter('a', function (V) {
+            return V < 4 ? (V%2==1) : V.a.b;
+        }).value(), {a: {c: 1, e: 3, f: 4, g: 5}});
+        done();
+    });
+
     it('should return 0', function (done) {
         assert.equal(0, jpp({a: {b: {c: 0}}}, 'a.b.c'));
         done();
