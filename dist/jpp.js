@@ -155,7 +155,6 @@ JPP.prototype = {
 
         if (Array.isArray(V)) {
             return this.set(path, V.filter(function (V, I) {
-                var R;
                 try {
                     return cb(V, I);
                 } catch (E) {
