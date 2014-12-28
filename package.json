@@ -31,8 +31,8 @@
     "build_dbg": "browserify json-path-processor.js -d -s JsonPathProcessor -o dist/jpp-dbg.js",
     "build_tst": "browserify test/test.js -o dist/browserTest.js",
     "build_min": "uglifyjs dist/jpp.js -c -o dist/jpp-min.js",
-    "coverage": "istanbul cover -- _mocha -R spec",
-    "test": "mocha -R spec"
+    "coverage": "istanbul cover -- _mocha",
+    "test": "mocha"
   },
   "main": "./json-path-processor.js",
   "devDependencies": {
