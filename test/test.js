@@ -120,7 +120,7 @@ describe('json-path-processor', function () {
     it('should set self by callback function', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
-        assert.deepEqual({a: {b: {c: 'OK!'}}, d: 9}, J.set('', function (V) {
+        assert.deepEqual({a: {b: {c: 'OK!'}}, d: 9}, J.set(undefined, function (V) {
             V.d = 9;
             return V;
         }).value());
@@ -317,6 +317,17 @@ describe('json-path-processor', function () {
         assert.deepEqual(J.forIn('a.b.c', function (O, index) {
             return O + '!';
         }).value(), {a:{b:{c:{0:'0!',1:'1!',2:'2!',length:'4!'},d:'OK!'}}});
+        done();
+    });
+
+    it('should do failed callback when forIn() not found', function (done) {
+        var J = jpp({a: {b: {c: 'OK'}}});
+
+        assert.deepEqual(J.forIn('a.b.d', function (V) {
+            return V*2;
+        }, function (V) {
+            return 'YO!';
+        }).value(), {a: {b: {c: 'OK', d: 'YO!'}}});
         done();
     });
 
