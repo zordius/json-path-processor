@@ -150,7 +150,7 @@ JPP.prototype = {
         var V = this.value(path), R;
 
         if (!V) {
-            return this.set(path, elsecb);
+            return elsecb ? this.set(path, elsecb, true) : this;
         }
 
         if (Array.isArray(V)) {
@@ -1739,6 +1739,26 @@ describe('json-path-processor', function () {
         assert.deepEqual(J.filter('a.b.c', function (O) {
             return O % 2 > 0;
         }).value(), {a: {b: {c: [3, 5], d:5}}});
+        done();
+    });
+
+    it('should do failed callback when filter() not found', function (done) {
+        var J = jpp({a: {b: {c: 'OK'}}});
+
+        assert.deepEqual(J.filter('a.b.d', function (V) {
+            return V%2;
+        }, function (V) {
+            return 'YO!';
+        }).value(), {a: {b: {c: 'OK', d: 'YO!'}}});
+        done();
+    });
+
+    it('should handle error when filter() throws on some keys', function (done) {
+        var J = jpp({a: {b: 0, c: 1, d: 2, e: 3, f: 4, g: 5}});
+
+        assert.deepEqual(J.filter('a', function (V) {
+            return V < 4 ? (V%2==1) : V.a.b;
+        }).value(), {a: {c: 1, e: 3, f: 4, g: 5}});
         done();
     });
 
