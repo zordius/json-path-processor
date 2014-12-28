@@ -6,9 +6,6 @@ node_js:
 script:
   - npm test
   - ./travis.sh
-
-sudo: false
-
 env:
   global:
     - secure: LI6896C2rY1CJUZqOxCXK2G7QLBqtCv4+KltWWT4kHc2x1UpCBxEWBi7jtmj3F2GJflnwv2rkp+qiesLhQszqCiiaz+fhjIZSpW6B7Ww+w5AvtLoxr5JM+0ZGgLkmchuUQDRm3yPngr+9ut0eKtUXHCIao0hrqHkEdvqQMUerGc=
