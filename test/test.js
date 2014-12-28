@@ -108,11 +108,21 @@ describe('json-path-processor', function () {
         done();
     });
 
-    it('should set by callback function', function (done) {
+    it('should set value by callback function', function (done) {
         var J = jpp({a: {b: {c: 'OK!'}}});
 
         assert.deepEqual({a: {b: {c: 'OK!!'}}}, J.set('a.b.c', function (V) {
             return V + '!';
+        }).value());
+        done();
+    });
+
+    it('should set self by callback function', function (done) {
+        var J = jpp({a: {b: {c: 'OK!'}}});
+
+        assert.deepEqual({a: {b: {c: 'OK!'}}, d: 9}, J.set('', function (V) {
+            V.d = 9;
+            return V;
         }).value());
         done();
     });
