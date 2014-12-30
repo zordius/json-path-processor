@@ -1733,6 +1733,20 @@ describe('json-path-processor', function () {
         done();
     });
 
+    it('should return undefined when find() on none object', function (done) {
+        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 0}}});
+
+        assert.equal(undefined, J.find('a.b.d'));
+        done();
+    });
+
+    it('should return undefined when findLast() on none object', function (done) {
+        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 0}}});
+
+        assert.equal(undefined, J.findLast('a.b.d'));
+        done();
+    });
+
     it('should be filtered by even', function (done) {
         var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
 
@@ -1759,6 +1773,24 @@ describe('json-path-processor', function () {
         assert.deepEqual(J.filter('a', function (V) {
             return V < 4 ? (V%2==1) : V.a.b;
         }).value(), {a: {c: 1, e: 3, f: 4, g: 5}});
+        done();
+    });
+
+    it('should handle error when filter() throws on some index', function (done) {
+        var J = jpp({a: [5, 4, 3, 2, 1, 0]});
+
+        assert.deepEqual(J.filter('a', function (V, I) {
+            return I < 4 ? (V%2==1) : V.a.b;
+        }).value(), {a: [5, 3, 1, 0]});
+        done();
+    });
+
+    it('should do nothing when filter() on none object or none array', function (done) {
+        var J = jpp({a: {b: 3}});
+
+        assert.deepEqual(J.filter('a.b', function (V, I) {
+            return I < 4 ? (V%2==1) : V.a.b;
+        }).value(), {a: {b: 3}});
         done();
     });
 
