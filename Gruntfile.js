@@ -37,16 +37,16 @@ module.exports = function (grunt) {
             {browserName: 'Android', version:'4.4', platform: 'Linux'},
             {browserName: 'Android', version:'4.1', platform: 'Linux'},
             {browserName: 'Android', version:'4.0', platform: 'Linux'},
-            {browserName: 'iphone', version:'8.1', platform: 'OS X 10.10'},
-            {browserName: 'iphone', version:'8.0', platform: 'OS X 10.10'},
-            {browserName: 'iphone', version:'7.1', platform: 'OS X 10.10'},
-            {browserName: 'iphone', version:'7.0', platform: 'OS X 10.9'},
-            {browserName: 'iphone', version:'6.1', platform: 'OS X 10.8'},
-            {browserName: 'ipad', version:'8.1', platform: 'OS X 10.10'},
-            {browserName: 'ipad', version:'8.0', platform: 'OS X 10.10'},
-            {browserName: 'ipad', version:'7.1', platform: 'OS X 10.10'},
-            {browserName: 'ipad', version:'7.0', platform: 'OS X 10.9'},
-            {browserName: 'ipad', version:'6.1', platform: 'OS X 10.8'}
+            {browserName: 'iphone', version:'8.1'},
+            {browserName: 'iphone', version:'8.0'},
+            {browserName: 'iphone', version:'7.1'},
+            {browserName: 'iphone', version:'7.0'},
+            {browserName: 'iphone', version:'6.1'},
+            {browserName: 'ipad', version:'8.1'},
+            {browserName: 'ipad', version:'8.0'},
+            {browserName: 'ipad', version:'7.1'},
+            {browserName: 'ipad', version:'7.0'},
+            {browserName: 'ipad', version:'6.1'}
           ]
         }
       }
