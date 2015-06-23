@@ -19,7 +19,7 @@ node_modules/.bin/codeclimate < coverage/lcov.info
 
 # build JS files for dist and test
 npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs@8.6.0 badge-render browserify jshint uglify-js
-npm run-script lint && npm run-script build_std && npm run-script build_dbg && npm run-script build_min && npm run-script build_tst
+npm run lint && npm run build_std && npm run build_dbg && npm run build_min && npm run build_tst
 
 CODE=$?
 if [ $CODE -ne 0 ]; then
