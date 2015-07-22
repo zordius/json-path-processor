@@ -12,7 +12,7 @@ var jsonpath = function (obj, path, assign, create, del) {
         }
 
         while (P.length) {
-            key = P.pop();
+            key = P.pop().replace('[DOT]', '.');
             switch (key) {
             case '$':
             case '':
