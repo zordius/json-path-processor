@@ -1,8 +1,24 @@
 /*jslint node: true */
 'use strict';
 
+var parsePath = function (path) {
+    if (!path) {
+        return [];
+    }
+
+    if (!path.match) {
+        return [path];
+    }
+
+    if (!path.match(/\[|\]/)) {
+        return path.split(/\./).reverse();
+    }
+
+    return path.match(/(.+?)(\.[^\.]+|\['[^\]]+'\])*/);
+};
+
 var jsonpath = function (obj, path, assign, create, del) {
-        var P = path ? path.split(/\./).reverse() : [],
+        var P = parsePath(path),
             OO = obj ? obj : (create ? {} : null),
             O = obj,
             key;
@@ -262,3 +278,5 @@ JPP.prototype = {
 module.exports = function (data, path) {
     return path ? jsonpath(data, path) : (new JPP(data));
 };
+
+module.exports.parsePath = parsePath;
