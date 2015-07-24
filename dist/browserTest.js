@@ -1889,6 +1889,11 @@ describe('JPP.parsePath', function () {
         assert.deepEqual(jpp.parsePath('a[\'b\'][\'c\']'), ['c', 'b', 'a']);
         done();
     });
+
+    it('should ignore the dot inside the array index', function (done) {
+        assert.deepEqual(jpp.parsePath('a[\'b.c\'][\'d\']'), ['d', 'b.c', 'a']);
+        done();
+    });
 });
 
 },{"..":1,"assert":2}]},{},[7]);
