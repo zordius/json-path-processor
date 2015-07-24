@@ -1,6 +1,11 @@
 HISTORY
 =======
 
+v0.2.3 https://github.com/zordius/json-path-processor/releases/tag/v0.2.3
+   * 8834681831 fix not found callback for .filter()
+   * 176ad833d9 export new .parsePath() API
+   * 4ccc2df5a2 support array syntax
+
 v0.2.2 https://github.com/zordius/json-path-processor/releases/tag/v0.2.2
    * 0e7bfa9679 properly delete an item from an array
 
