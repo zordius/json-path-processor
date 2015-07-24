@@ -239,7 +239,9 @@ We only support absolute JSON Path and receive only one item.
 When you need to deal with `.` inside your property name, you can just use the array syntax:
 
 ```javascript
-jpp.value("sites['google.com'].pageRank.score");
+// var result = data.sites['google.com'].pageRank.score;
+// prevent exception by jpp way:
+var result = jpp(data).value("sites['google.com'].pageRank.score");
 ```
 
 The long story
