@@ -244,6 +244,8 @@ When you need to deal with `.` inside your property name, you can just use the a
 var result = jpp(data).value("sites['google.com'].pageRank.score");
 ```
 
+**TODO** handle `\` escape inside the array syntax
+
 The long story
 --------------
 
