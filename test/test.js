@@ -510,4 +510,14 @@ describe('JPP.parsePath', function () {
         assert.deepEqual(jpp.parsePath('a[\'b\']'), ['b', 'a']);
         done();
     });
+
+    it('should handle pure array syntax', function (done) {
+        assert.deepEqual(jpp.parsePath('[\'b\']'), ['b', '']);
+        done();
+    });
+
+    it('should handle deep array syntax', function (done) {
+        assert.deepEqual(jpp.parsePath('a[\'b\'][\'c\']'), ['c', 'b', 'a']);
+        done();
+    });
 });

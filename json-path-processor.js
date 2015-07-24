@@ -2,6 +2,8 @@
 'use strict';
 
 var parsePath = function (path) {
+    var R = [];
+
     if (!path) {
         return [];
     }
@@ -14,9 +16,14 @@ var parsePath = function (path) {
         return path.split(/\./).reverse();
     }
 
-    return path.match(/(.*?)(\.[^\.]+|\[\'[^\]]+\'\])/).slice(1).reverse().map(function (V) {
-        return V.replace(/^\[.(.+).\]$/, '$1');
-    });
+    if (!('.' + path).replace(/\.([^\.\[]*)|\[\'([^\]]+)\'\]/g, function (M, D, A) {
+        R.push((D === undefined) ? A : D);
+        return '';
+    }) === '') {
+        // FIXEME: syntax error, do nothing now
+    }
+
+    return R.reverse();
 };
 
 var jsonpath = function (obj, path, assign, create, del) {
