@@ -233,8 +233,14 @@ Supported JSON Path
 We only support absolute JSON Path and receive only one item.
 
 * $ : refer to self
-* $.foo.bar : refer to foo then bar key
-* $.foo.3.bar : refer to foo then 4th array item then bar key
+* $.foo.bar or .foo.bar or foo.bar or foo['bar'] or ['foo']['bar'] : refer to `foo` then `bar`
+* $.foo.3.bar or foo.3.bar or foo['3'].bar or foo['3']['bar'] : refer to `foo` then 4th item then `bar`
+
+When you need to deal with `.` inside your property name, you can just use the array syntax:
+
+```javascript
+jpp.value("sites['google.com'].pageRank.score");
+```
 
 The long story
 --------------
