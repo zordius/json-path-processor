@@ -3,6 +3,8 @@
 'use strict';
 
 var parsePath = function (path) {
+    var R = [];
+
     if (!path) {
         return [];
     }
@@ -15,7 +17,14 @@ var parsePath = function (path) {
         return path.split(/\./).reverse();
     }
 
-    return path.match(/(.+?)(\.[^\.]+|\['[^\]]+'\])*/);
+    if (!('.' + path).replace(/\.([^\.\[]*)|\[\'([^\]]+)\'\]/g, function (M, D, A) {
+        R.push((D === undefined) ? A : D);
+        return '';
+    }) === '') {
+        // FIXEME: syntax error, do nothing now
+    }
+
+    return R.reverse();
 };
 
 var jsonpath = function (obj, path, assign, create, del) {
@@ -1847,7 +1856,37 @@ describe('jpp', function () {
 
 describe('JPP.parsePath', function () {
     it('should return empty array when input none', function (done) {
-        assert.deepEqual([], jpp.parsePath());
+        assert.deepEqual(jpp.parsePath(), []);
+        done();
+    });
+
+    it('should return empty array when input ""', function (done) {
+        assert.deepEqual(jpp.parsePath(''), []);
+        done();
+    });
+
+    it('should return empty array when input "$"', function (done) {
+        assert.deepEqual(jpp.parsePath(''), []);
+        done();
+    });
+
+    it('should return reversed array', function (done) {
+        assert.deepEqual(jpp.parsePath('a.b'), ['b', 'a']);
+        done();
+    });
+
+    it('should handle array syntax', function (done) {
+        assert.deepEqual(jpp.parsePath('a[\'b\']'), ['b', 'a']);
+        done();
+    });
+
+    it('should handle pure array syntax', function (done) {
+        assert.deepEqual(jpp.parsePath('[\'b\']'), ['b', '']);
+        done();
+    });
+
+    it('should handle deep array syntax', function (done) {
+        assert.deepEqual(jpp.parsePath('a[\'b\'][\'c\']'), ['c', 'b', 'a']);
         done();
     });
 });
