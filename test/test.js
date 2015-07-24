@@ -487,7 +487,27 @@ describe('jpp', function () {
 
 describe('JPP.parsePath', function () {
     it('should return empty array when input none', function (done) {
-        assert.deepEqual([], jpp.parsePath());
+        assert.deepEqual(jpp.parsePath(), []);
+        done();
+    });
+
+    it('should return empty array when input ""', function (done) {
+        assert.deepEqual(jpp.parsePath(''), []);
+        done();
+    });
+
+    it('should return empty array when input "$"', function (done) {
+        assert.deepEqual(jpp.parsePath(''), []);
+        done();
+    });
+
+    it('should return reversed array', function (done) {
+        assert.deepEqual(jpp.parsePath('a.b'), ['b', 'a']);
+        done();
+    });
+
+    it('should handle array syntax', function (done) {
+        assert.deepEqual(jpp.parsePath('a[\'b\']'), ['b', 'a']);
         done();
     });
 });

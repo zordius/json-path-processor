@@ -14,7 +14,9 @@ var parsePath = function (path) {
         return path.split(/\./).reverse();
     }
 
-    return path.match(/(.+?)(\.[^\.]+|\['[^\]]+'\])*/);
+    return path.match(/(.*?)(\.[^\.]+|\[\'[^\]]+\'\])/).slice(1).reverse().map(function (V) {
+        return V.replace(/^\[.(.+).\]$/, '$1');
+    });
 };
 
 var jsonpath = function (obj, path, assign, create, del) {
