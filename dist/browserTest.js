@@ -1426,6 +1426,16 @@ describe('jpp', function () {
             assert.equal(jpp(null).value('a.b.d'), null);
             done();
         });
+
+        it('should return 0', function (done) {
+            assert.equal(jpp({a: {b: {c: 0}}}, 'a.b.c'), 0);
+            done();
+        });
+
+        it('should return empty string', function (done) {
+            assert.equal(jpp({a: {b: {c: ""}}}, 'a.b.c'), '');
+            done();
+        });
     });
 
     describe('.set()', function () {
@@ -1784,62 +1794,55 @@ describe('jpp', function () {
         });
     });
 
-    it('should be filtered by even', function (done) {
-        var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
+    describe('.filter()', function () {
+        it('should be filtered by even', function (done) {
+            var J = jpp({a: {b: {c: [2, 3, 4, 5], d: 5}}});
 
-        assert.deepEqual(J.filter('a.b.c', function (O) {
-            return O % 2 > 0;
-        }).value(), {a: {b: {c: [3, 5], d:5}}});
-        done();
+            assert.deepEqual(J.filter('a.b.c', function (O) {
+                return O % 2 > 0;
+            }).value(), {a: {b: {c: [3, 5], d:5}}});
+            done();
+        });
+
+        it('should do failed callback when filter() not found', function (done) {
+            var J = jpp({a: {b: {c: 'OK'}}});
+
+            assert.deepEqual(J.filter('a.b.d', function (V) {
+                return V%2;
+            }, function (V) {
+                return 'YO!';
+            }).value(), {a: {b: {c: 'OK', d: 'YO!'}}});
+            done();
+        });
+
+        it('should handle error when filter() throws on some keys', function (done) {
+            var J = jpp({a: {b: 0, c: 1, d: 2, e: 3, f: 4, g: 5}});
+
+            assert.deepEqual(J.filter('a', function (V) {
+                return V < 4 ? (V%2==1) : V.a.b;
+            }).value(), {a: {c: 1, e: 3, f: 4, g: 5}});
+            done();
+        });
+
+        it('should handle error when filter() throws on some index', function (done) {
+            var J = jpp({a: [5, 4, 3, 2, 1, 0]});
+
+            assert.deepEqual(J.filter('a', function (V, I) {
+                return I < 4 ? (V%2==1) : V.a.b;
+            }).value(), {a: [5, 3, 1, 0]});
+            done();
+        });
+
+        it('should do nothing when filter() on none object or none array', function (done) {
+            var J = jpp({a: {b: 3}});
+
+            assert.deepEqual(J.filter('a.b', function (V, I) {
+                return I < 4 ? (V%2==1) : V.a.b;
+            }).value(), {a: {b: 3}});
+            done();
+        });
     });
 
-    it('should do failed callback when filter() not found', function (done) {
-        var J = jpp({a: {b: {c: 'OK'}}});
-
-        assert.deepEqual(J.filter('a.b.d', function (V) {
-            return V%2;
-        }, function (V) {
-            return 'YO!';
-        }).value(), {a: {b: {c: 'OK', d: 'YO!'}}});
-        done();
-    });
-
-    it('should handle error when filter() throws on some keys', function (done) {
-        var J = jpp({a: {b: 0, c: 1, d: 2, e: 3, f: 4, g: 5}});
-
-        assert.deepEqual(J.filter('a', function (V) {
-            return V < 4 ? (V%2==1) : V.a.b;
-        }).value(), {a: {c: 1, e: 3, f: 4, g: 5}});
-        done();
-    });
-
-    it('should handle error when filter() throws on some index', function (done) {
-        var J = jpp({a: [5, 4, 3, 2, 1, 0]});
-
-        assert.deepEqual(J.filter('a', function (V, I) {
-            return I < 4 ? (V%2==1) : V.a.b;
-        }).value(), {a: [5, 3, 1, 0]});
-        done();
-    });
-
-    it('should do nothing when filter() on none object or none array', function (done) {
-        var J = jpp({a: {b: 3}});
-
-        assert.deepEqual(J.filter('a.b', function (V, I) {
-            return I < 4 ? (V%2==1) : V.a.b;
-        }).value(), {a: {b: 3}});
-        done();
-    });
-
-    it('should return 0', function (done) {
-        assert.equal(0, jpp({a: {b: {c: 0}}}, 'a.b.c'));
-        done();
-    });
-
-    it('should return empty string', function (done) {
-        assert.equal("", jpp({a: {b: {c: ""}}}, 'a.b.c'));
-        done();
-    });
 });
 
 describe('JPP.parsePath', function () {
