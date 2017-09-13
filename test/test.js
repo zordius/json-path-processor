@@ -50,6 +50,13 @@ describe('jpp', function () {
             done();
         });
 
+        it('should return null when the value is null', function (done) {
+            var J = jpp({a: {b: {c: null}}});
+
+            assert.equal(J.value('a.b.c'), null);
+            done();
+        });
+
         it('should return undefined when not found', function (done) {
             var J = jpp({a: {b: {c: 'OK!'}}});
 
