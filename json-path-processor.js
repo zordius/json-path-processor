@@ -44,7 +44,7 @@ var jsonpath = function (obj, path, assign, create, del) {
                 continue;
             }
 
-            if ((OO[key] !== undefined) && (OO[key] !== null)) {
+            if ((OO[key] !== undefined)) {
                 OO = OO[key];
             } else {
                 if (create !== undefined) {
