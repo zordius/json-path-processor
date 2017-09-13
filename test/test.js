@@ -11,14 +11,14 @@ describe('jpp', function () {
 
     it('should create an object', function (done) {
         var J = jpp([1, 2, 3]);
-        assert.equal(typeof J, 'object'); 
+        assert.equal(typeof J, 'object');
         done();
     });
 
     it('should create a jpp chained object', function (done) {
         var J = jpp([1, 2, 3]);
         assert.deepEqual(J.value(), [1, 2, 3]);
-        done(); 
+        done();
     });
 
     describe('.value()', function () {
@@ -90,6 +90,13 @@ describe('jpp', function () {
             var J = jpp({a: {b: {c: 'OK!'}}});
 
             assert.deepEqual(J.set('$.a.b.c', 0).value(), {a: {b: {c: 0}}});
+            done();
+        });
+
+        it('should handle set to null', function (done) {
+            var J = jpp({a: {b: {c: 'OK!'}}});
+
+            assert.deepEqual(J.set('$.a.b.c', null).value(), {a: {b: {c: null}}});
             done();
         });
 
