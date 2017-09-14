@@ -20,7 +20,7 @@ fi
 # push coverage to codeclimate
 npm install codeclimate-test-reporter
 npm run-script coverage
-node_modules/.bin/codeclimate < coverage/lcov.info
+node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
 
 # build JS files for dist and test
 npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs@8.6.0 badge-render browserify jshint uglify-js
