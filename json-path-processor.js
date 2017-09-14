@@ -44,7 +44,7 @@ var jsonpath = function (obj, path, assign, create, del) {
                 continue;
             }
 
-            if ((OO[key] !== undefined) && (OO[key] !== null)) {
+            if ((OO[key] !== undefined)) {
                 OO = OO[key];
             } else {
                 if (create !== undefined) {
@@ -74,9 +74,9 @@ var jsonpath = function (obj, path, assign, create, del) {
         if (assign !== undefined) {
             try {
                 if (key) {
-                    O[key] = assign.call ? assign(OO) : assign;
+                    O[key] = assign !== null && assign.call ? assign(OO) : assign;
                 } else {
-                    O = assign.call ? assign(OO) : assign;
+                    O = assign !== null && assign.call ? assign(OO) : assign;
                 }
             } catch (E) {
                 if (create && key) {
@@ -96,7 +96,7 @@ function JPP (data) {
 
 JPP.prototype = {
     value: function (path) {
-        if (!this._data) { 
+        if (!this._data) {
             return this._data;
         }
         return path ? jsonpath(this._data, path) : this._data;
@@ -280,7 +280,7 @@ JPP.prototype = {
             this.set(arguments[0], all, true);
         }
 
-        return this; 
+        return this;
     }
 };
 
