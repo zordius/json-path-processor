@@ -24,10 +24,8 @@ module.exports = cfg => {
     sauceLabs: {
       testName: 'Mocha Unit Test for JPP',
       public: 'public',
-      tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'jpp', 'mocha', 'karma'],
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
+      tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'jpp', 'mocha', 'karma']
     },
-    startConenct: false,
     customLaunchers,
     browsers: Object.keys(customLaunchers),
     frameworks: ['mocha', 'browserify'],
