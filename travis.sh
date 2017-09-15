@@ -23,7 +23,7 @@ npm run-script coverage
 node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
 
 # build JS files for dist and test
-npm install grunt@0.4.5 grunt-cli@0.1.13 grunt-contrib-connect@0.10.1 grunt-saucelabs@8.6.0 badge-render browserify@11.0.0 jshint uglify-js
+npm install badge-render browserify uglify-js karma karma-mocha karma-sauce-launcher karma-browserify watchify
 npm run lint && npm run build_std && npm run build_dbg && npm run build_min && npm run build_tst
 
 CODE=$?
@@ -33,7 +33,7 @@ if [ $CODE -ne 0 ]; then
 fi
 
 # do sauce labs tests
-node_modules/.bin/grunt || exit $?
+node_modules/.bin/karma start || exit $?
 
 # Setup git
 git config --global user.name "Travis-CI"
