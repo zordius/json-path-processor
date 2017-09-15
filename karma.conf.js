@@ -25,7 +25,9 @@ module.exports = cfg => {
       testName: 'Mocha Unit Test for JPP',
       public: 'public',
       tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'jpp', 'mocha', 'karma'],
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
     },
+    startConenct: false,
     customLaunchers,
     browsers: Object.keys(customLaunchers),
     frameworks: ['mocha', 'browserify'],

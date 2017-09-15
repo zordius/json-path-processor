@@ -10,6 +10,8 @@ script:
   - npm test
   - ./travis.sh
 sudo: false
+addons:
+  sauce_connect: true
 env:
   global:
     - secure: F5vq9JW3OpyWLrF0fJTWeEXxSD0VGIFtiH/ZHxsBGZ37Onc4VlCIFfe8VANFK83cMufu/F+uOqy+zzg5x5/mxKgQgBmiUaDa4cxv480zFFpBkssZTZHtpwDvvZWm1ZmcVytggkeHlA+raWIQp1LKlxuxY4bKtkdQWOrDdYcYAq8=
