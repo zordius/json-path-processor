@@ -26,7 +26,10 @@ module.exports = cfg => {
       public: 'public',
       tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'jpp', 'mocha', 'karma']
     },
-    logLevel: cfg.LOG_DEBUG,
+    connectOptions: {
+      verbose: true,
+      doctor: true
+    },
     customLaunchers,
     browsers: Object.keys(customLaunchers),
     frameworks: ['mocha', 'browserify'],
