@@ -1,6 +1,9 @@
 HISTORY
 =======
 
+v0.2.4 https://github.com/zordius/json-path-processor/releases/tag/v0.2.4
+   * 6309b11f4b now can .get() and .set() null
+
 v0.2.3 https://github.com/zordius/json-path-processor/releases/tag/v0.2.3
    * 8834681831 fix not found callback for .filter()
    * 176ad833d9 export new .parsePath() API
