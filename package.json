@@ -54,7 +54,7 @@
       "url": "https://github.com/zordius/json-path-processor/blob/master/LICENSE.txt"
     }
   ],
-  "dependencies": {
+  "devDependencies": {
     "badge-render": "0.0.15",
     "browserify": "^14.4.0",
     "karma": "^1.7.1",
