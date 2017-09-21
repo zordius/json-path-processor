@@ -1,6 +1,9 @@
 HISTORY
 =======
 
+v0.2.5 https://github.com/zordius/json-path-processor/releases/tag/v0.2.5
+   * dac55eaa82 fix wrong dependency in 0.2.4
+
 v0.2.4 https://github.com/zordius/json-path-processor/releases/tag/v0.2.4
    * 6309b11f4b now can .get() and .set() null
 
